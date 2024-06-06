@@ -1,4 +1,6 @@
-// Values, Data Types, and Variables
+/* 
+  Values, Data Types, and Variables
+*/
 
 const country = "Ukraine";
 const continent = "Europe";
@@ -46,7 +48,9 @@ console.log(BMIMark, BMIJohn, markHigherBMI);
 
 ///////////////////////////////////////
 
-// Strings and Template Literals
+/* 
+  Strings and Template Literals
+*/
 
 const firstName = "John";
 const lastName = "Smith";
@@ -59,7 +63,9 @@ console.log(description1);
 
 ///////////////////////////////////////
 
-// Taking Decisions: if / else Statements
+/* 
+  Taking Decisions: if / else Statements
+*/
 
 if (population > 33) {
   console.log(`${country}'s population is above average`);
@@ -221,5 +227,100 @@ if (hasDriversLicense && hasGoodVision && !isTired) {
 // } else {
 //   console.log(`${countryPrompt} does not meet your criteria :(`);
 // }
+
+///////////////////////////////////////
+
+// Calculate average of 3 scores
+
+const scoreDolphins = (97 + 112 + 101) / 3;
+const scoreKoalas = (109 + 95 + 123) / 3;
+
+console.log(scoreDolphins, scoreKoalas);
+
+if (scoreDolphins > scoreKoalas && scoreDolphins >= 100) {
+  console.log("Dolphins win the trophy!");
+} else if (scoreKoalas > scoreDolphins && scoreKoalas >= 100) {
+  console.log("Koalas win the trophy!");
+} else if (
+  scoreDolphins === scoreKoalas &&
+  scoreDolphins >= 100 &&
+  scoreKoalas >= 100
+) {
+  console.log("Both win the trophy!");
+} else {
+  console.log("No one wins the trophy!");
+}
+
+///////////////////////////////////////
+
+/*
+  The switch Statement
+*/
+
+const day = "monday";
+
+switch (day) {
+  case "monday": // day === 'monday'
+    console.log("Plan course structure");
+    console.log("Go to coding meetup");
+    break;
+  case "tuesday":
+    console.log("Prepare theory videos");
+    break;
+  case "wednesday":
+  case "thursday":
+    console.log("Write code examples");
+    break;
+  case "friday":
+    console.log("Record videos");
+    break;
+  case "saturday":
+  case "sunday":
+    console.log("Enjoy the weekend :D");
+    break;
+  default:
+    console.log("Not a valid day!");
+}
+
+//
+
+const checkLanguage = "Czech";
+
+switch (checkLanguage) {
+  case "Chinese":
+  case "Mandarin":
+    console.log("MOST number of native speakers!");
+    break;
+  case "Spanish":
+    console.log("2nd place in number of native speakers");
+    break;
+  case "English":
+    console.log("3rd place");
+    break;
+  case "Hindi":
+    console.log("Number 4");
+    break;
+  case "Arabic":
+    console.log("5th most spoken language");
+    break;
+  default:
+    console.log("Great language too :D");
+}
+
+///////////////////////////////////////
+
+/*
+  Statements and Expressions
+*/
+
+// Expressions
+3 + 4;
+1991;
+true && false && !false;
+
+// Statements
+if (23 > 10) {
+  const str = "23 is bigger"; // this line is a statement, because it does not produce a value, but the string itself is an expression
+}
 
 ///////////////////////////////////////
