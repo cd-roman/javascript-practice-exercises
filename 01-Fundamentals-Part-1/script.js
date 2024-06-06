@@ -170,16 +170,56 @@ if (ageString == 30) console.log("You are thirty now!(loose equality)");
 
 // as a general rule, always use strict equality operator
 
-const numNeighbours = Number(
-  prompt("How many neighbour countries does your contry have?")
-);
+// const numNeighbours = Number(
+//   prompt("How many neighbour countries does your contry have?")
+// );
 
-if (numNeighbours === 1) {
-  console.log("Only one border!");
-} else if (numNeighbours > 1) {
-  console.log("More than one border");
+// if (numNeighbours === 1) {
+//   console.log("Only one border!");
+// } else if (numNeighbours > 1) {
+//   console.log("More than one border");
+// } else {
+//   console.log("No borders");
+// }
+
+///////////////////////////////////////
+
+/*
+  Basic Boolean Logic
+*/
+
+const hasDriversLicense = true;
+const hasGoodVision = true;
+
+console.log(hasDriversLicense && hasGoodVision); // true
+
+const hasDriversLicense2 = true;
+const hasGoodVision2 = false;
+
+console.log(hasDriversLicense2 || hasGoodVision2); // true
+
+console.log(!hasDriversLicense); // false
+
+if (hasDriversLicense && hasGoodVision) {
+  console.log("Sarah is able to drive!");
 } else {
-  console.log("No borders");
+  console.log("Someone else should drive...");
 }
+
+const isTired = true;
+
+if (hasDriversLicense && hasGoodVision && !isTired) {
+  console.log("Sarah is able to drive!");
+} else {
+  console.log("Someone else should drive...");
+}
+
+// const countryPrompt = prompt("Where do you want to live?");
+
+// if (language === "English" && population < 50 && !isIsland) {
+//   console.log(`You should live in ${countryPrompt}`);
+// } else {
+//   console.log(`${countryPrompt} does not meet your criteria :(`);
+// }
 
 ///////////////////////////////////////
