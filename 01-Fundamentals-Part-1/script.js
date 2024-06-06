@@ -324,3 +324,25 @@ if (23 > 10) {
 }
 
 ///////////////////////////////////////
+
+/*
+  The Conditional (Ternary) Operator
+*/
+
+const newAge = 23;
+newAge >= 18
+  ? console.log("I like to drink wine🍷")
+  : console.log("I like to drink juice🥤");
+
+const drink = newAge >= 18 ? "wine🍷" : "juice🥤";
+console.log(drink);
+
+console.log(`I like to drink ${newAge >= 18 ? "wine🍷" : "juice🥤"}`);
+
+//
+
+console.log(
+  `${country}’s population is ${population > 33 ? "above" : "below"} average`
+);
+
+///////////////////////////////////////
