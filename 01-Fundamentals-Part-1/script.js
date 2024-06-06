@@ -97,3 +97,34 @@ if (BMIMark > BMIJohn) {
 }
 
 ///////////////////////////////////////
+
+/*
+  Type Conversion and Coercion
+*/
+
+// Type Conversion
+const inputYear = "1991";
+console.log(Number(inputYear), inputYear);
+console.log(Number(inputYear) + 18);
+
+console.log(Number("Jonas"));
+console.log(typeof NaN);
+
+console.log(String(23), 23);
+
+// Type Coercion
+console.log("I am " + 23 + " years old"); // 23 is converted to string
+console.log("23" - "10" - 3); // 23 and 10 are converted to numbers
+console.log("23" * "2"); // 23 is converted to number
+
+let n = "1" + 1; // '11'
+n = n - 1; // 10
+console.log(n);
+
+console.log("9" - "5"); // 4
+console.log("19" - "13" + "17"); // 617
+console.log("19" - "13" + 17); // 23
+console.log("123" < 57); // false
+console.log(5 + 6 + "4" + 9 - 4 - 2); // 1143
+
+///////////////////////////////////////
