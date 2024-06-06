@@ -128,3 +128,58 @@ console.log("123" < 57); // false
 console.log(5 + 6 + "4" + 9 - 4 - 2); // 1143
 
 ///////////////////////////////////////
+
+/* 
+  Equality Operators: == vs. === 
+*/
+
+// Truthy and Falsy Values
+
+// 5 falsy values: 0, '', undefined, null, NaN
+
+console.log(Boolean(0)); // false
+console.log(Boolean(undefined)); // false
+console.log(Boolean("Jonas")); // true
+console.log(Boolean({})); // true
+console.log(Boolean("")); // false
+console.log(Boolean(-1)); // true
+
+const money = 0;
+if (money) {
+  console.log("Don't spend it all ;)");
+} else {
+  console.log("You should get a job!");
+}
+
+let height;
+if (height) {
+  console.log("YAY! Height is defined");
+} else {
+  console.log("Height is UNDEFINED");
+}
+
+// Equality Operators: == vs. ===
+
+const age = 18;
+if (age === 18) console.log("You just became an adult :D (strict equality)");
+if (age == 18) console.log("You just became an adult :D (loose equality)");
+
+const ageString = "30";
+if (ageString === 30) console.log("You are thirty now!(strict equality)");
+if (ageString == 30) console.log("You are thirty now!(loose equality)");
+
+// as a general rule, always use strict equality operator
+
+const numNeighbours = Number(
+  prompt("How many neighbour countries does your contry have?")
+);
+
+if (numNeighbours === 1) {
+  console.log("Only one border!");
+} else if (numNeighbours > 1) {
+  console.log("More than one border");
+} else {
+  console.log("No borders");
+}
+
+///////////////////////////////////////
