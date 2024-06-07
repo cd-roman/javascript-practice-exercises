@@ -345,4 +345,16 @@ console.log(
   `${country}’s population is ${population > 33 ? "above" : "below"} average`
 );
 
+//
+
+const bill = 275;
+
+const tipRate = bill >= 50 && bill <= 300 ? 0.15 : 0.2;
+
+const tip = bill * tipRate;
+
+console.log(
+  `The bill was ${bill}, the tip was ${tip}, and the total value ${bill + tip}`
+);
+
 ///////////////////////////////////////
