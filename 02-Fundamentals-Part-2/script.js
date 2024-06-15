@@ -316,3 +316,68 @@ calcTip(bills[2]);
 calcTip(bills[3]);
 
 console.log(tips, totals);
+
+////    INTRODUCTION TO OBJECTS    ////
+
+// Object literal syntax
+
+const joeyObj = {
+  firstName: "Joey",
+  lastName: "Tribbiani",
+  age: 2037 - 1991,
+  job: "actor",
+  friends: ["Chandler", "Ross", "Monica", "Phoebe", "Rachel"],
+};
+
+const myCountry = {
+  country: "Czech Republic",
+  capital: "Prague",
+  language: "Czech",
+  population: 10,
+  neighbours: ["Germany", "Poland", "Slovakia", "Austria"],
+};
+
+// Dot vs. bracket notation
+console.log(joeyObj);
+
+console.log(joeyObj.lastName); // dot notation
+console.log(joeyObj["lastName"]); // bracket notation
+
+// bracket notation is useful when we want to use expressions
+const nameKey = "Name";
+console.log(joeyObj["first" + nameKey]);
+console.log(joeyObj["last" + nameKey]);
+
+// const interestedIn = prompt(
+//   "What do you want to know about Joey? Choose between firstName, lastName, age, job, and friends"
+// );
+
+// if (joeyObj[interestedIn]) {
+//   console.log(joeyObj[interestedIn]);
+// } else {
+//   console.log(
+//     "Wrong request! Choose between firstName, lastName, age, job, and friends"
+//   );
+// }
+
+// Add new properties
+
+joeyObj.location = "New York";
+joeyObj["twitter"] = "@joeytribbiani";
+
+console.log(joeyObj);
+
+console.log(
+  `${joeyObj.firstName} has ${joeyObj.friends.length} friends, and his best friend is called ${joeyObj.friends[0]}`
+);
+
+// Exercise
+
+console.log(
+  `${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbours.length} neighbouring countries, and a capital called ${myCountry.capital}`
+);
+
+myCountry.population += 2;
+console.log(myCountry.population);
+myCountry["population"] -= 2;
+console.log(myCountry.population);
