@@ -295,3 +295,24 @@ if (!neighbours.includes("Germany")) {
 
 neighbours[neighbours.indexOf("Poland")] = "Republic of Poland";
 console.log(neighbours);
+
+// Coding challenge
+
+const calcTip = (bill) => {
+  const tip = bill * (bill >= 50 && bill <= 300 ? 0.15 : 0.2);
+  tips.push(tip);
+  totals.push(bill + tip);
+};
+
+const bills = [125, 555, 44, 100];
+
+const tips = [];
+
+const totals = [];
+
+calcTip(bills[0]);
+calcTip(bills[1]);
+calcTip(bills[2]);
+calcTip(bills[3]);
+
+console.log(tips, totals);
