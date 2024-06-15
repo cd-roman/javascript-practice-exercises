@@ -381,3 +381,107 @@ myCountry.population += 2;
 console.log(myCountry.population);
 myCountry["population"] -= 2;
 console.log(myCountry.population);
+
+////    OBJECT METHODS    ////
+
+const joeyObj2 = {
+  firstName: "Joey",
+  lastName: "Tribbiani",
+  birthYear: 1985,
+  job: "actor",
+  friends: ["Chandler", "Ross", "Monica", "Phoebe", "Rachel"],
+  hasDriversLicense: true,
+
+  //   calcObjAge: function (birthYear) {
+  //     return 2037 - birthYear;
+  //   },
+
+  //   calcAge: function () {
+  //     console.log(this);
+  //     this.age = 2037 - this.birthYear;
+  //     return this.age;
+  //   },
+
+  calcAge: function () {
+    this.age = 2037 - this.birthYear;
+    return this.age;
+  },
+
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-year old ${
+      this.job
+    }, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license`;
+  },
+};
+
+console.log(joeyObj2.calcAge());
+console.log(joeyObj2.getSummary());
+
+// Coding challenge
+
+/* Write your code below. Good luck! 🙂 */
+
+const mark = {
+  fullName: "Mark Miller",
+  mass: 78,
+  height: 1.69,
+  calcBMI: function () {
+    this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
+  },
+};
+
+const john = {
+  fullName: "John Smith",
+  mass: 92,
+  height: 1.95,
+  calcBMI: function () {
+    this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
+  },
+};
+
+mark.calcBMI();
+john.calcBMI();
+
+if (mark.bmi > john.bmi) {
+  console.log(
+    `${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s (${john.bmi})`
+  );
+} else {
+  console.log(
+    `${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s (${mark.bmi})`
+  );
+}
+
+// Exercise
+
+const myCountry2 = {
+  country: "Ukraine",
+  capital: "Kyiv",
+  language: "Ukrainian",
+  population: 36,
+  neighbours: [
+    "Moldova",
+    "Romania",
+    "Hungary",
+    "Slovakia",
+    "Poland",
+    "Belarus",
+    "Russia",
+  ],
+
+  describe: function () {
+    return `${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbours.length} neighbouring countries, and a capital called ${this.capital}`;
+  },
+
+  checkIsland: function () {
+    return (this.isIsland = this.neighbours.length === 0 ? true : false);
+
+    // Even simpler version (see why this works...)
+    // return this.isIsland = !Boolean(this.neighbours.length);
+  },
+};
+
+console.log(myCountry2.describe());
+console.log(myCountry2.checkIsland());
