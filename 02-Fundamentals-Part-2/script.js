@@ -227,3 +227,71 @@ const ages = [
   calcAgeArr(yearsArr[yearsArr.length - 1]),
 ];
 console.log(ages);
+
+// Exercise
+
+const populations = [36, 10, 332, 15];
+console.log(populations.length === 4);
+
+const percentages = [
+  percentageOfWorld1(populations[0]),
+  percentageOfWorld1(populations[1]),
+  percentageOfWorld1(populations[2]),
+  percentageOfWorld1(populations[3]),
+];
+
+console.log(percentages);
+
+////    BASIC ARRAY OPERATIONS (METHODS)    ////
+
+// Add elements
+friends.push("John"); // adds element to the end of the array
+console.log(friends);
+const newLength = friends.push("Paul"); // push method returns the new length of the array
+console.log(newLength);
+
+friends.unshift("Bob"); // adds element to the beginning of the array
+console.log(friends);
+
+// Remove elements
+friends.pop(); // removes the last element of the array
+console.log(friends);
+
+const popped = friends.pop(); // pop method returns the removed element
+console.log(popped);
+console.log(friends);
+
+friends.shift(); // removes the first element of the array
+console.log(friends);
+
+console.log(friends.indexOf("Jay")); // returns the index of the element
+console.log(friends.indexOf("Helena")); // returns -1 if the element is not in the array
+
+console.log(friends.includes("Jay")); // returns true if the element is in the array
+console.log(friends.includes("Helena")); // returns false if the element is not in the array
+
+// array methods use strict equality to compare elements
+friends.push(23);
+console.log(friends.includes("23")); // returns false
+console.log(friends.includes(23)); // returns true
+
+if (friends.includes("Jay")) {
+  console.log("You have a friend called Jay");
+}
+
+// Exercise
+
+const neighbours = ["Germany", "Poland", "Slovakia", "Austria"];
+
+neighbours.push("Utopia");
+console.log(neighbours);
+
+neighbours.pop();
+console.log(neighbours);
+
+if (!neighbours.includes("Germany")) {
+  console.log("Probably not a central European country");
+}
+
+neighbours[neighbours.indexOf("Poland")] = "Republic of Poland";
+console.log(neighbours);
