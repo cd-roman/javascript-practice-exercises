@@ -485,3 +485,114 @@ const myCountry2 = {
 
 console.log(myCountry2.describe());
 console.log(myCountry2.checkIsland());
+
+////    ITERATION: THE FOR LOOP    ////
+
+// for loop keeps running while condition is TRUE
+
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Lifting weights repetition ${rep} 🏋️‍♂️`);
+}
+
+// Exercise
+for (let voter = 1; voter <= 20; voter++) {
+  console.log(`Voter number ${voter} is currently voting`);
+}
+
+////    LOOPING ARRAYS, BREAKING AND CONTINUING    ////
+
+const joeyArray = [
+  "Joey",
+  "Tribbiani",
+  2037 - 1991,
+  "actor",
+  ["Chandler", "Ross", "Monica", "Phoebe", "Rachel"],
+  true,
+];
+const types = [];
+
+for (let i = 0; i < joeyArray.length; i++) {
+  console.log(joeyArray[i], typeof joeyArray[i]);
+
+  // Fillig types array
+  types.push(typeof joeyArray[i]);
+  //    or
+  // types[i] = typeof joeyArray[i];
+}
+
+console.log(types);
+
+const yearsArray = [1991, 2007, 1969, 2020];
+const agesArray = [];
+
+for (let i = 0; i < yearsArray.length; i++) {
+  agesArray.push(2037 - yearsArray[i]);
+}
+
+console.log(agesArray);
+
+// Continue and break
+
+console.log("--- LOG ONLY STRINGS FROM THE ARRAY---");
+for (let i = 0; i < joeyArray.length; i++) {
+  if (typeof joeyArray[i] !== "string") continue;
+  // `continue` exits the current iteration and continues to the next one
+
+  console.log(joeyArray[i], typeof joeyArray[i]);
+}
+
+console.log("--- BREAK WITH NUMBER---");
+for (let i = 0; i < joeyArray.length; i++) {
+  if (typeof joeyArray[i] === "number") break;
+  // `break` exits the loop entirely once the condition is met
+
+  console.log(joeyArray[i], typeof joeyArray[i]);
+}
+
+// Exercise
+const populations2 = [15, 10, 90, 1441];
+const percentages2 = [];
+
+for (let i = 0; i < populations2.length; i++) {
+  const perc = percentageOfWorld1(populations2[i]);
+  percentages2.push(perc);
+}
+
+console.log(percentages2);
+
+////    LOOPING BACKWARDS AND LOOPS IN LOOPS    ////
+
+const joeyArray2 = [
+  "Joey",
+  "Tribbiani",
+  2037 - 1991,
+  "actor",
+  ["Chandler", "Ross", "Monica", "Phoebe", "Rachel"],
+];
+
+// Looping backwards
+for (let i = joeyArray2.length - 1; i >= 0; i--) {
+  console.log(i, joeyArray2[i]);
+}
+
+// Loop inside a loop
+for (let exercise = 1; exercise < 4; exercise++) {
+  console.log(`--- Starting exercise ${exercise}`);
+
+  for (let rep = 1; rep < 6; rep++) {
+    console.log(`Exercise ${exercise}: Lifting weights repetition ${rep} 🏋️‍♂️`);
+  }
+}
+// Exercise
+
+const listOfNeighbours = [
+  ["Canada", "Mexico"],
+  ["Spain"],
+  ["Norway", "Sweden", "Germany"],
+];
+
+for (let i = 0; i < listOfNeighbours.length; i++) {
+  for (let j = 0; j < listOfNeighbours[i].length; j++) {
+    console.log(`Neighbour: ${listOfNeighbours[i][j]}`);
+  }
+}

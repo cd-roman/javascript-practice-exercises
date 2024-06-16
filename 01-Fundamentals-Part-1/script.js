@@ -19,9 +19,9 @@ console.log(typeof country);
 console.log(typeof language);
 
 // Bug or error in JavaScript
-console.log(typeof null);
+console.log(typeof null); // object
 
-console.log(typeof undefined);
+console.log(typeof undefined); // undefined
 
 console.log(population / 2);
 
