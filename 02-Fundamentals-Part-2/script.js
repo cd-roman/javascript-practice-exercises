@@ -596,3 +596,72 @@ for (let i = 0; i < listOfNeighbours.length; i++) {
     console.log(`Neighbour: ${listOfNeighbours[i][j]}`);
   }
 }
+
+////    THE WHILE LOOP    ////
+
+/*
+    while (condition) {
+        code block
+    }
+*/
+
+let rep = 1;
+while (rep <= 10) {
+  console.log(`Lifting weights repetition ${rep} 🏋️‍♂️`);
+  rep++;
+}
+
+// Example that doesn't have a counter
+let dice = Math.trunc(Math.random() * 6) + 1;
+console.log(dice);
+
+while (dice !== 6) {
+  console.log(`You rolled a ${dice}`);
+  dice = Math.trunc(Math.random() * 6) + 1;
+  if (dice === 6) console.log("Loop is about to end...");
+}
+
+// Exercise
+const populations3 = [15, 10, 90, 1441];
+const percentages3 = [];
+
+let i = 0;
+while (i < populations3.length) {
+  const perc = percentageOfWorld1(populations3[i]);
+  percentages3.push(perc);
+  i++;
+}
+
+console.log(percentages3);
+
+////    CODING CHALLENGE #4    ////
+
+const calcTip2 = function (bill) {
+  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+};
+
+const bills2 = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+const tips2 = [];
+
+const totals2 = [];
+
+for (let i = 0; i < bills2.length; i++) {
+  const tip = calcTip2(bills2[i]);
+  tips2.push(tip);
+
+  totals2.push(tip + bills2[i]);
+}
+
+console.log(bills2 + "\n" + tips2 + "\n" + totals2);
+
+const calcAverage2 = function (arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum / arr.length;
+};
+
+const averageTotal = calcAverage2(totals2);
+console.log(averageTotal);
