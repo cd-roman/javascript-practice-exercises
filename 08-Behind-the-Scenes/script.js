@@ -143,3 +143,54 @@ matilda.calcAge();
 // f();
 
 ///////////////////////////////////////
+
+const bill = {
+  firstName: "Bill",
+  year: 1990,
+  calcAge: function () {
+    console.log(this);
+    console.log(2037 - this.year);
+
+    // Solution 1
+    //   const self = this;
+    //   const isMillenial = function () {
+    //     console.log(self.year >= 1981 && self.year <= 1996);
+    //   };
+    //   isMillenial();
+
+    // Solution 2
+    // Arrow function doesn't get its own this keyword, so it uses the this keyword of its parent scope, so called lexical this keyword
+    // In this case it works because arrow function is inside a normal function, so it uses the this keyword of the normal function
+    const isMillenial = () => {
+      console.log(this);
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
+    isMillenial();
+  },
+
+  // Never use arrow functions as methods, use normal function expressions instead
+  greet: () => {
+    console.log(`Hey ${this.firstName}`);
+  },
+};
+bill.greet(); // Hey undefined
+console.log(this.firstName); // undefined
+
+bill.calcAge(); // 47
+
+///////////////////////////////////////
+
+// Arguments keyword
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
+};
+addExpr(2, 5);
+addExpr(2, 5, 8, 12);
+
+// Arrow function doesn't have arguments keyword
+var addArrow2 = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
+addArrow2(2, 5, 8); // ReferenceError: arguments is not defined
