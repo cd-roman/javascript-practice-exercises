@@ -101,3 +101,45 @@ Conclusion and best practices:
 */
 
 ///////////////////////////////////////
+
+// The this Keyword in Practice
+
+console.log(this); // window object
+
+const calculateAge = function (birthYear) {
+  console.log(2037 - birthYear);
+  console.log(this);
+};
+calculateAge(1991);
+
+const calculateAgeArrow = (birthYear) => {
+  console.log(2037 - birthYear);
+  // Arrow function doesn't get its own this keyword, so it uses the this keyword of its parent scope, so called lexical this keyword
+  console.log(this);
+};
+calculateAgeArrow(1985);
+
+const mark = {
+  year: 1991,
+  calcAge: function () {
+    console.log(this);
+    console.log(2037 - this.year);
+  },
+};
+mark.calcAge();
+
+const matilda = {
+  year: 2017,
+};
+
+// Method borrowing
+matilda.calcAge = mark.calcAge;
+
+// this keyword always points to the object that is calling the method, in this case matilda object
+matilda.calcAge();
+
+// const f = mark.calcAge;
+// Regular function call, so this keyword is undefined
+// f();
+
+///////////////////////////////////////
