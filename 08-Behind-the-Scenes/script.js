@@ -193,4 +193,68 @@ var addArrow2 = (a, b) => {
   console.log(arguments);
   return a + b;
 };
-addArrow2(2, 5, 8); // ReferenceError: arguments is not defined
+// addArrow2(2, 5, 8); // ReferenceError: arguments is not defined
+
+///////////////////////////////////////
+
+// Primitives vs. Objects (Primitive vs. Reference Types)
+
+let age = 30;
+let oldAge = age;
+age = 31;
+console.log(age); // 31
+console.log(oldAge); // 30
+
+const person = {
+  name: "Joey",
+  age: 30,
+};
+
+const friend = person;
+friend.age = 27;
+console.log("Friend:", friend); // Friend: {name: "Joey", age: 27}
+console.log("Person:", person); // Person: {name: "Joey", age: 27}
+
+//////////
+
+// Primitive types
+let lastName = "Williams";
+let oldLastName = lastName;
+lastName = "Davis";
+console.log(lastName, oldLastName); // Davis Williams
+
+// Reference types
+const monica = {
+  firstName: "Monica",
+  lastName: "Williams",
+  age: 27,
+};
+
+const marriedMonica = monica;
+marriedMonica.lastName = "Davis";
+
+// Both objects monica and marriedMonica are the same because they are pointing to the same memory address
+console.log("Before marriage:", monica); // Before marriage: {firstName: "Monica", lastName: "Davis", age: 27}
+console.log("After marriage:", marriedMonica); // After marriage: {firstName: "Monica", lastName: "Davis", age: 27}
+
+// Copying objects
+const monica2 = {
+  firstName: "Monica",
+  lastName: "Williams",
+  age: 27,
+  family: ["Ross", "Chandler"],
+};
+
+// Object.assign method creates a shallow copy of an object, not a deep clone.
+// It only copies the first level of the object, not the nested objects
+const monicaCopy = Object.assign({}, monica2);
+monicaCopy.lastName = "Davis";
+console.log("Before marriage:", monica2); // Before marriage: {firstName: "Monica", lastName: "Williams", age: 27}
+console.log("After marriage:", monicaCopy); // After marriage: {firstName: "Monica", lastName: "Davis", age: 27}
+
+// Manipulate the copy object affects the original object
+// It happens because the family property is an array, nested in the original object
+monicaCopy.family.push("Joey");
+monicaCopy.family.push("Phoebe");
+console.log("Before marriage:", monica2);
+console.log("After marriage:", monicaCopy);
