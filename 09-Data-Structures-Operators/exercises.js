@@ -252,3 +252,40 @@ console.log(fiveStarRatings, oneStarRatings, threeStarRatings); // 63405 1808 0
 /* 
     2. Destructuring Objects
 */
+
+// 2.1 Destructure the first book object from the books array into variables called title, author and ISBN.
+const { title, author, ISBN } = books[0];
+
+// 2.2 Destructure the first book object from the books array into a variable called tags
+const { keywords: tags } = books[0];
+
+// 2.3 Destructure the seventh book object (books[6]) into variables called language and programmingLanguage. Assign the programmingLanguage variable with a default value of 'unknown'
+const { languange, programmingLanguage = "unknown" } = books[6];
+
+// 2.4 Reassign the variables below with the values of the title and author properties of the first book object from the books array.
+let bookTitle = "unknown";
+let bookAuthor = "unknown";
+({ title: bookTitle, author: bookAuthor } = books[0]);
+console.log(bookTitle, bookAuthor); // Algorithms [ 'Robert Sedgewick', 'Kevin Wayne' ]
+
+// 2.5 Each book object has a deeply nested rating property
+// Destructure the first book object from the books array into a variable called bookRating. In the result of your destructuring, the bookRating variable should be assigned with the value of the book[0].thirdParty.goodreads.rating property.
+const {
+  thirdParty: {
+    goodreads: { rating: bookRating },
+  },
+} = books[0];
+
+// 2.6 Write a function called printBookInfo that has three parameters called title, author and year
+// This function should work for a single object passed as an argument, and it should log to the console information about the book in this format: "${title} by ${author}, ${year}"
+function printBookInfo({ title, author, year = "year unknown" }) {
+  console.log(`${title} by ${author}, ${year}`);
+}
+
+printBookInfo({
+  title: "Algorithms",
+  author: "Robert Sedgewick",
+  year: "2011",
+}); // Algorithms by Robert Sedgewick, 2011
+
+printBookInfo({ title: "Algorithms", author: "Robert Sedgewick" }); // Algorithms by Robert Sedgewick, unknown
