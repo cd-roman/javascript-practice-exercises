@@ -41,6 +41,12 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2}, and ${ing3}`
+    );
+  },
 };
 
 // Destructuring Objects
@@ -123,3 +129,63 @@ restaurant.orderDelivery({
   mainIndex: 2,
   starterIndex: 2,
 });
+
+///////////////////////////////////////
+
+// Spread Operator
+
+const arr1 = [7, 8, 9];
+const badNewArr = [1, 2, arr1[0], arr1[1], arr1[2]];
+console.log(badNewArr);
+
+const newArr = [1, 2, ...arr1];
+console.log(newArr);
+
+// Log the elements of the array separately
+console.log(...newArr);
+
+// Create a new array
+const newMenu = [...restaurant.mainMenu, "Gnocci"];
+console.log(newMenu);
+
+// Spread operator takes all the elements from the array and puts them into a new array
+// It does not create new variables
+// We can only use it in places where we would otherwise write values separated by commas
+
+// Copy array
+const mainMenuCopy = [...restaurant.mainMenu]; // Shallow copy
+
+// Join 2 arrays
+const menu2 = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu2);
+console.log(...menu2);
+
+// Spread operator works on all iterables
+// Iterables: arrays, strings, maps, sets, NOT objects
+
+// Spread operator on strings
+const str = "Joey";
+const letters = [...str, " ", "T."];
+console.log(letters);
+
+// Spread operator normally used in the places where we would write values separated by commas
+// For example, when calling a function or building an array
+
+// A real-world example
+// const ingredients = [
+//   prompt("Let's make pasta! Ingredient 1?"),
+//   prompt("Ingredient 2?"),
+//   prompt("Ingredient 3?"),
+// ];
+// console.log(ingredients);
+
+// restaurant.orderPasta(...ingredients);
+
+// Spread operator on objects
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: "Guiseppe" };
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = "Ristorante Roma";
+console.log(restaurantCopy.name);
+console.log(restaurant.name);

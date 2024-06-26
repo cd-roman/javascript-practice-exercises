@@ -289,3 +289,16 @@ printBookInfo({
 }); // Algorithms by Robert Sedgewick, 2011
 
 printBookInfo({ title: "Algorithms", author: "Robert Sedgewick" }); // Algorithms by Robert Sedgewick, unknown
+
+///////////////////////////////////////
+
+// 3.1 Declare an array called bookAuthors, and fill it with authors of the first two books from the books array. The bookAuthors array should have just one level (no nested arrays)
+const bookAuthors = [...books[0].author, ...books[1].author];
+console.log(bookAuthors); // [ 'Robert Sedgewick', 'Kevin Wayne', 'Harold Abelson', 'Gerald Jay Sussman', 'Julie Sussman (Contributor)' ]
+
+// 3.2 Write a function called spellWord that accepts a single string as an argument. This function should log to the console each letter of the argument separated by a space.
+const spellWord = (word) => {
+  console.log(...word);
+};
+
+spellWord("JavaScript");
