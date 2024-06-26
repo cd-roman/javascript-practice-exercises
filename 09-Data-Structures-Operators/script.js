@@ -290,6 +290,7 @@ restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
 ///////////////////////////////////////
 
 // Nullish Coalescing Operator (??)
+
 // It works with null and undefined (NOT 0 or '')
 // In other words it works with nullish values
 
@@ -299,5 +300,43 @@ console.log(guests3); // 10 - this is an error, because 0 is a falsy value
 
 const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect); // 0 - this is the correct value
+
+///////////////////////////////////////
+
+// Logical assignment operators
+
+const rest1 = {
+  name: "Capri",
+  numGuests: 20,
+};
+
+const rest2 = {
+  name: "Lazio",
+  owner: "Joey Tribbianu",
+};
+
+// Usage of OR assignment operator
+
+// Old way
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+
+// New way
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+// A better way to use nullish assignment operator
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+// Usage of AND assignment operator
+// rest1.owner = rest1.owner && "<Anonymous>";
+// rest2.owner = rest2.owner && "<Anonymous>";
+
+rest1.owner &&= "<Anonymous>";
+rest2.owner &&= "<Anonymous>";
+
+console.log(rest1);
+console.log(rest2);
 
 ///////////////////////////////////////
