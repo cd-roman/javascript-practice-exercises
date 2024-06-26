@@ -292,6 +292,10 @@ printBookInfo({ title: "Algorithms", author: "Robert Sedgewick" }); // Algorithm
 
 ///////////////////////////////////////
 
+/*
+    3. Spread Operator
+*/
+
 // 3.1 Declare an array called bookAuthors, and fill it with authors of the first two books from the books array. The bookAuthors array should have just one level (no nested arrays)
 const bookAuthors = [...books[0].author, ...books[1].author];
 console.log(bookAuthors); // [ 'Robert Sedgewick', 'Kevin Wayne', 'Harold Abelson', 'Gerald Jay Sussman', 'Julie Sussman (Contributor)' ]
@@ -302,3 +306,29 @@ const spellWord = (word) => {
 };
 
 spellWord("JavaScript");
+
+///////////////////////////////////////
+
+/*
+    4. Rest Operator and Parameters
+*/
+
+// 4.1 Destructure the keywords property (array) of the first book from the books array into variables called mainKeyword and rest.
+// The first keyword should be assigned to mainKeyword, and the rest of the keywords should be assigned to the rest variable (it should be an array).
+const [mainKeyword, ...rest] = books[0].keywords;
+console.log(mainKeyword, rest);
+
+// 4.2 Destructure the second book from the books array into a variable called bookPublisher. The bookPublisher variable should be assigned with the value of the publisher property of the book object.
+// Assign the rest of the properties to the restOfTheBook variable.
+const { publisher: bookPublisher, ...restOfTheBook } = books[1];
+console.log(bookPublisher);
+
+// 4.3 Write a function called printBookAuthorsCount that has two parameters called title and authors. The authors parameter should accept any number of arguments.
+// This function should log to the console a string formatted like that: "The book "${title}" has ${authors.length} authors".
+const printBookAuthorsCount = function (title, ...authors) {
+  console.log(`The book "${title}" has ${authors.length} authors`);
+};
+
+printBookAuthorsCount("Algorithms", "Robert Sedgewick", "Kevin Wayne"); // The book "Algorithms" has 2 authors
+
+///////////////////////////////////////

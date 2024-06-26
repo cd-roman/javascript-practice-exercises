@@ -47,6 +47,11 @@ const restaurant = {
       `Here is your delicious pasta with ${ing1}, ${ing2}, and ${ing3}`
     );
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
 // Destructuring Objects
@@ -189,3 +194,56 @@ const restaurantCopy = { ...restaurant };
 restaurantCopy.name = "Ristorante Roma";
 console.log(restaurantCopy.name);
 console.log(restaurant.name);
+
+///////////////////////////////////////
+
+// Rest Pattern and Parameters
+
+// The difference between the spread operator and the rest pattern
+// The spread operator takes all the elements from the array and puts them into a new array
+// The spread operator used on the right side of the assignment operator, or on the right side of the = sign
+// const arr = [1, 2, ...[3, 4]];
+
+// The rest pattern is used on the left side of the assignment operator, or on the left side of the = sign
+// The rest pattern collects multiple elements and condenses them into an array
+const [a2, b2, ...others] = [1, 2, 3, 4, 5];
+console.log(a2, b2, others);
+
+// In this example, the rest pattern collects the remaining elements into an array on the left
+// And the spread operator collects the elements into an array on the right
+// The rest element must be the last element in the array
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+
+// Objects
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
+// Functions with rest parameters
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+  console.log(sum);
+};
+
+add(2, 3);
+add(5, 3, 7, 2);
+add(8, 2, 5, 3, 2, 1);
+
+const x = [23, 5, 7];
+add(...x);
+
+restaurant.orderPizza("mushrooms", "onion", "olives", "spinach");
+
+restaurant.orderPizza("mushrooms");
+
+// With the spread operator we unpack or expand the array
+// With the rest pattern we pack elements back into an array or compress them into an array
+
+// The spread operator is used where we would otherwise write values separated by commas
+// The rest pattern is used where we would otherwise write variable names separated by commas
+
+///////////////////////////////////////
