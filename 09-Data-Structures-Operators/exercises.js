@@ -332,3 +332,35 @@ const printBookAuthorsCount = function (title, ...authors) {
 printBookAuthorsCount("Algorithms", "Robert Sedgewick", "Kevin Wayne"); // The book "Algorithms" has 2 authors
 
 ///////////////////////////////////////
+
+/*
+    5. Short Circuiting (&& and ||)
+*/
+
+// 5.1 Write a function called hasExamplesInJava that takes a book object from the books array as an argument.
+// This function should return true if the book uses Java, or a string 'no data available' if it uses other language or no programming language at all.
+
+const hasExamplesInJava = function (book) {
+  console.log(book.programmingLanguage === "Java" || "no data available");
+};
+
+hasExamplesInJava(books[0]);
+
+// Loop over the books array, and for the books that provide online content, log to the console a string in this format: "${title}" provides online content. Use short-circuiting.
+for (let i = 0; i < books.length; i++) {
+  books[i].onlineContent &&
+    console.log(`${books[i].title} provides online content`);
+}
+
+/* 
+    6. The Nullish Coalescing Operator (??)
+*/
+
+// 6.1 There are objects in the books array that don't have the onlineContent property at all.
+// Loop over the books array, and log a string to the console in this format: "${title}" provides no data about its online content.
+for (let i = 0; i < books.length; i++) {
+  books[i].onlineContent ??
+    console.log(`${books[i].title} provides no data about its online content`);
+}
+
+///////////////////////////////////////

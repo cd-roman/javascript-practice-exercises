@@ -247,3 +247,57 @@ restaurant.orderPizza("mushrooms");
 // The rest pattern is used where we would otherwise write variable names separated by commas
 
 ///////////////////////////////////////
+
+// Short Circuiting (&& and ||)
+
+console.log("---- OR ----");
+// Use any data type, return any data type, short-circuiting
+console.log(3 || "Joey"); // 3
+console.log("" || "Joey"); // Joey
+console.log(true || 0); // true
+console.log(undefined || null); // null
+
+// The || is looking for the first truthy value and return it
+console.log(undefined || 0 || "" || "Hello" || 23 || null); // Hello
+
+restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log("---- AND ----");
+
+// The && operator is used to execute the second value if the first value is true
+// If first value is falsy, it will return the first value
+
+console.log(0 && "Joey"); // 0
+console.log(7 && "Joey"); // Joey
+console.log(true && false); // false
+console.log("Hello" && 23 && null && "Joey"); // null
+
+// Practical example
+
+// Old way
+if (restaurant.orderPizza) {
+  restaurant.orderPizza("mushrooms", "spinach");
+}
+
+// New way
+restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
+
+///////////////////////////////////////
+
+// Nullish Coalescing Operator (??)
+// It works with null and undefined (NOT 0 or '')
+// In other words it works with nullish values
+
+restaurant.numGuests = 0;
+const guests3 = restaurant.numGuests || 10;
+console.log(guests3); // 10 - this is an error, because 0 is a falsy value
+
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect); // 0 - this is the correct value
+
+///////////////////////////////////////
