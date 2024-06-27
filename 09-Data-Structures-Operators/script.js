@@ -340,3 +340,23 @@ console.log(rest1);
 console.log(rest2);
 
 ///////////////////////////////////////
+
+// The for-of Loop
+
+console.log("----- The for-of Loop -----");
+
+const menu3 = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu3) console.log(item);
+
+for (const item of menu3.entries()) {
+  console.log(item);
+}
+
+console.log(...menu3.entries()); // Array Iterator {}
+
+for (const [i, el] of menu3.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
+
+///////////////////////////////////////

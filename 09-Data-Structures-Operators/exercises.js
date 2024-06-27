@@ -483,3 +483,36 @@ printGoals(...game.scored);
 // team is more likely to win, without using an if/else statement or the ternary operator.
 team1 < team2 && console.log(`${game.team1} is more likely to win`);
 team2 < team1 && console.log(`${game.team2} is more likely to win`);
+
+/*
+  8. Looping Arrays: The for-of Loop
+*/
+
+// 8.1 Use the for-of loop to loop over the books array and sum the pages of all books.
+// Use the pageSum variable below, and the pages property of the book objects.
+
+let pageSum = 0;
+for (let book of books) {
+  pageSum += book.pages;
+  console.log(pageSum);
+}
+
+// 8.2 Below is the allAuthors variable which stores an empty array.
+// Use the for-of loop to fill allAuthors with the authors of each book from the books array.
+
+const allAuthors = [];
+
+for (const book of books) {
+  typeof book.author === "string"
+    ? allAuthors.push(book.author)
+    : allAuthors.push(...book.author);
+}
+
+console.log(allAuthors);
+
+// 8.3 Use the for-of loop together with Array's entries() method to log each author from allAuthors to the console together with its index. Make the index start from 1, instead of 0.
+for (const [index, author] of allAuthors.entries()) {
+  console.log(`${index + 1}. ${author}`);
+}
+
+///////////////////////////////////////
