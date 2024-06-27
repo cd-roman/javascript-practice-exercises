@@ -419,3 +419,30 @@ const users = [{ name: "Joey", email: "joey@email.com" }];
 
 // check if the array is empty
 console.log(users[0]?.name ?? "User array empty");
+
+// Looping objects: Object.keys, values, and entries
+
+console.log("----- Looping Objects -----");
+
+// Property names
+const properties = Object.keys(openHours);
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+for (const day of properties) {
+  openStr += `${day}, `;
+}
+
+console.log(openStr);
+
+// Property values
+const values = Object.values(openHours);
+console.log(values);
+
+// Entire object
+const entries = Object.entries(openHours);
+console.log(entries);
+
+for (const [day, { open, close }] of entries) {
+  console.log(`On ${day} we open at ${open} and close at ${close}`);
+}
