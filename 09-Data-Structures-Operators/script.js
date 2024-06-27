@@ -388,3 +388,34 @@ for (const [i, el] of menu3.entries()) {
 }
 
 ///////////////////////////////////////
+
+// Optional Chaining (?.)
+
+// The optional chaining operator is used to avoid errors when trying to access a property of an object that does not exist
+// It is used to check if a certain property exists in an object
+
+console.log("----- Optional Chaining -----");
+
+// Old way
+// if (restaurant.openingHours.mon) console.log(restaurant.openingHours.mon.open);
+
+// New way with optional chaining
+console.log(restaurant.openingHours.mon?.open); // undefined
+console.log(restaurant.openingHours?.mon?.open); // undefined
+
+// Example
+const days2 = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+for (const day of days2) {
+  const open = restaurant.openingHours[day]?.open ?? "closed";
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+// Methods
+console.log(restaurant.order?.(0, 1) ?? "Method does not exist"); // Focaccia, Pizza
+console.log(restaurant.orderRisotto?.(0, 1) ?? "Method does not exist"); // Method does not exist
+
+// Arrays
+const users = [{ name: "Joey", email: "joey@email.com" }];
+
+// check if the array is empty
+console.log(users[0]?.name ?? "User array empty");
