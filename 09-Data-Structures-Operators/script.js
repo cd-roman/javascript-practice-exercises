@@ -446,3 +446,54 @@ console.log(entries);
 for (const [day, { open, close }] of entries) {
   console.log(`On ${day} we open at ${open} and close at ${close}`);
 }
+
+// Sets
+
+console.log("----- Sets -----");
+
+// Sets can hold unique values of any type
+// Sets can hold mixed data types, not only strings
+
+const ordersSet = new Set([
+  "Pasta",
+  "Pizza",
+  "Pizza",
+  "Risotto",
+  "Pasta",
+  "Pizza",
+]);
+console.log(ordersSet); // Set(3) {"Pasta", "Pizza", "Risotto"}
+
+// Sets are iterables
+console.log(new Set("Joey")); // Set(4) {"J", "o", "e", "y"}
+
+console.log(ordersSet.size); // 3
+
+// Check if an element is in the set
+// Has method returns true if the element is in the set, false otherwise
+// It is similar to the includes method in arrays
+console.log(ordersSet.has("Pizza")); // true
+console.log(ordersSet.has("Bread")); // false
+
+// Add elements to the set
+ordersSet.add("Garlic Bread");
+ordersSet.add("Garlic Bread");
+ordersSet.delete("Risotto");
+console.log(ordersSet); // Set(3) {"Pasta", "Pizza", "Garlic Bread"}
+
+// There is no index in sets, so we cannot get elements by index
+console.log(ordersSet[0]); // undefined
+
+// Looping sets
+for (const order of ordersSet) console.log(order);
+
+// Example
+// The real-world use case for sets is to remove duplicate values from arrays
+const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique); // ["Waiter", "Chef", "Manager"]
+console.log(new Set(staff).size); // 3
+
+console.log(new Set("joeytribbiani").size); // 10
+
+///////////////////////////////////////

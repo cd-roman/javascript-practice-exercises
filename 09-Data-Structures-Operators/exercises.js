@@ -564,7 +564,7 @@ console.log(getFirstKeyword(newBook2));
 ///////////////////////////////////////
 
 /*
-  Looping Objects: Object Keys, Values and Entries
+  11. Looping Objects: Object Keys, Values and Entries
 */
 
 // 11.1 Use the for-of loop together with the Object.keys() method to loop over the thirdParty.goodreads property (array) of the first book object from the books array.
@@ -651,5 +651,40 @@ for (const player of game.scored) {
   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 }
 console.log(scorers);
+
+///////////////////////////////////////
+
+/*
+ 12. Sets
+*/
+
+// 12.1 Loop over the books array, and fill the allKeywords array with the keywords coming from the keywords property of each book object.
+// The allKeywords array should have just one level (no nested arrays).
+const allKeywords = [];
+for (const book of books) {
+  allKeywords.push(...book.keywords);
+}
+console.log(allKeywords);
+
+// 12.2 The allKeyword array contains duplicates. Remove them by creating a Set out of that array.
+// Assign the newly created set to the uniqueKeywords variable.
+const uniqueKeywords = new Set(allKeywords);
+console.log(uniqueKeywords);
+
+// 12.3 Add two more keywords to the uniqueKeywords set, for example, 'coding' and 'science'.
+uniqueKeywords.add("coding").add("science");
+console.log(uniqueKeywords);
+
+// 12.4 Delete 'business' from the uniqueKeywords set.
+uniqueKeywords.delete("business");
+console.log(uniqueKeywords);
+
+// 12.5 Create an array out of the uniqueKeywords set, and assign it to the uniqueKeywordsArr variable.
+const uniqueKeywordsArr = [...uniqueKeywords];
+console.log(uniqueKeywordsArr);
+
+// 12.6 Delete all items from the uniqueKeywords set.
+uniqueKeywords.clear();
+console.log(uniqueKeywords);
 
 ///////////////////////////////////////
