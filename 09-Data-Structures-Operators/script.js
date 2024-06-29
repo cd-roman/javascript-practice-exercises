@@ -497,3 +497,63 @@ console.log(new Set(staff).size); // 3
 console.log(new Set("joeytribbiani").size); // 10
 
 ///////////////////////////////////////
+
+// Maps: Fundamentals
+
+console.log("----- Maps -----");
+
+const restMap = new Map();
+restMap.set("name", "Classico Italiano");
+restMap.set(1, "Firenze, Italy");
+
+console.log(restMap.set(2, "Lisbon, Portugal"));
+
+restMap
+  .set("categories", ["Italian", "Pizzeria", "Vegetarian", "Organic"])
+  .set("open", 11)
+  .set("close", 23)
+  .set(true, "We are open")
+  .set(false, "We are closed");
+
+console.log(restMap);
+
+// Get values from the map
+console.log(restMap.get("name"));
+console.log(restMap.get(true));
+console.log(restMap.get(1));
+
+const time = 20;
+console.log(
+  restMap.get(time > restMap.get("open") && time < restMap.get("close"))
+);
+
+// Check if the map has a certain key
+console.log(restMap.has("categories"));
+
+// Delete elements from the map
+restMap.delete(2);
+console.log(restMap);
+
+// Get the size of the map
+console.log(restMap.size); // 7
+
+// Clear the map
+// restMap.clear();
+
+// Maps can have any data type as keys
+restMap.set([1, 2], "Test");
+console.log(restMap);
+console.log(restMap.size);
+
+console.log(restMap.get([1, 2])); // undefined
+
+// In order to get the value from the map, we need to use the exact same array
+const arrMap = [1, 2];
+restMap.set(arrMap, "Test2");
+console.log(restMap.get(arrMap)); // Test2
+
+// We can use DOM objects as keys in maps
+restMap.set(document.querySelector("h1"), "Heading");
+console.log(restMap);
+
+///////////////////////////////////////
