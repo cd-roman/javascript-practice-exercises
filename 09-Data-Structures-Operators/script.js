@@ -597,3 +597,72 @@ console.log([...question.keys()]);
 console.log([...question.values()]);
 
 ///////////////////////////////////////
+
+// Working with Strings - Part 1
+
+console.log("----- Working with Strings - Part 1 -----");
+
+const airline = "TAP Air Portugal";
+const plane = "A320";
+
+console.log(plane[0]); // A
+console.log(plane[1]); // 3
+console.log(plane[2]); // 2
+console.log("B737"[0]); // B
+console.log(airline.length); // 16
+
+// Strings also have methods
+
+// indexOf method
+
+console.log(airline.indexOf("r")); // 6
+console.log(airline.lastIndexOf("r")); // 10
+console.log(airline.indexOf("Portugal")); // 8
+
+// indexOf is case sensitive
+console.log(airline.indexOf("portugal")); // -1 because it is not found
+
+// Slice method
+// Slice method extracts a part of the string and returns a new string
+// It does not change the original string
+// In order to use it we need to store the result in a new variable
+
+console.log(airline.slice(4)); // Air Portugal - it starts at index 4
+console.log(airline.slice(4, 7)); // Air - it starts at index 4 and ends at index 7
+
+// Extract the first word of the string without knowing the length of the word
+console.log(airline.slice(0, airline.indexOf(" "))); // TAP
+
+// Extract the last word of the string without knowing the length of the word
+console.log(airline.slice(airline.lastIndexOf(" ") + 1)); // Portugal
+
+// Extract the last characters of the string
+console.log(airline.slice(-2)); // al
+console.log(airline.slice(1, -1)); // AP Air Portuga
+
+// Function to check the middle seat
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === "B" || s === "E") console.log("You got the middle seat 😬");
+  else console.log("You got lucky! 😎");
+};
+
+checkMiddleSeat("11B");
+checkMiddleSeat("23C");
+checkMiddleSeat("3E");
+
+// How string methods work
+// JavaSctipt converts the string to an object and then calls the method on that object
+// This is called boxing
+// The string is converted to an object, the method is called, and then the object is destroyed
+// Once done, JavaScript returns the primitive value back to the string
+// This is why we can use methods on primitives like strings
+
+console.log(new String("Joey"));
+console.log(typeof new String("Joey"));
+
+console.log(typeof new String("Joey").slice(1));
+
+///////////////////////////////////////
