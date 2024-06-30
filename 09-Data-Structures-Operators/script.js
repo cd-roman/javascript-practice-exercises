@@ -758,3 +758,80 @@ checkBaggage("Socks and camera");
 checkBaggage("Got some snacks and a gun for protection");
 
 ///////////////////////////////////////
+
+// Working with Strings - Part 3
+
+console.log("----- Working with Strings - Part 3 -----");
+
+// Split method
+
+// Split method splits the string into an array of substrings based on a separator (divider)
+console.log("a+very+nice+string".split("+")); // ["a", "very", "nice", "string"]
+console.log("Joey Tribbiani".split(" ")); // ["Joey", "Tribbiani"]
+
+const [firstName, lastName] = "Joey Tribbiani".split(" ");
+console.log(firstName, lastName);
+
+// Join method
+
+// Join method joins the elements of an array into a string
+
+const newName = ["Mr.", firstName, lastName.toUpperCase()].join(" ");
+console.log(newName);
+
+// Capitalize the first letter of each word in a string
+
+const capitalizeName2 = function (name) {
+  const names = name.split(" ");
+  const namesUpper = [];
+
+  for (const n of names) {
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+
+  console.log(namesUpper.join(" "));
+};
+
+capitalizeName2("jessica ann smith davis");
+capitalizeName2("mark anthony turner");
+
+// Padding a string
+
+// .padStart method adds a certain number of characters to the start of the string
+
+const message = "Go to gate 23!";
+
+// We wwant the string to be 25 characters long
+console.log(message.padStart(25, "+")); // ++++++++Go to gate 23!
+console.log("Joey".padStart(25, "+")); // +++++++++++++++++++++Joey
+
+// .padEnd method adds a certain number of characters to the end of the string
+console.log(message.padEnd(25, "+")); // Go to gate 23!++++++++
+
+// We can use both methods to create a nice-looking header
+console.log("Joey".padStart(20, "+").padEnd(40, "+")); // ++++++++++++++++Joey++++++++++++++++++++
+
+// Real-world example
+const maskCreditCard = function (number) {
+  const str = number + "";
+  const last = str.slice(-4);
+  return last.padStart(str.length, "*");
+};
+
+console.log(maskCreditCard(4337846386464738));
+console.log(maskCreditCard("4337846386461234"));
+
+// Repeat method
+const message2 = "Bad weather... All departures delayed... ";
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${"✈️ ".repeat(n)}`);
+};
+
+planesInLine(5);
+planesInLine(3);
+planesInLine(12);
+
+///////////////////////////////////////

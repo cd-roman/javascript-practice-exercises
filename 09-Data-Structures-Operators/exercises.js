@@ -872,3 +872,59 @@ logBookTheme("Algorhithms and Data Structures");
 logBookTheme("Engineering systems");
 
 ///////////////////////////////////////
+
+/*
+ 17. Working with Strings - Part 3
+*/
+
+// 17.1 Write a function called logBookCategories that takes a string of categories separated with semicolons, and logs each category to the console (as separate strings).
+const bookCategories =
+  "science;computing;computer science;algorithms;business;operating systems;networking;electronics";
+
+function logBookCategories(str) {
+  const categories = str.split(";");
+
+  for (let category of categories) {
+    console.log(category);
+  }
+}
+
+logBookCategories(bookCategories);
+
+// 17.2 Now, the opposite. Each book from the books array has the keywords property.
+// Write a function called getKeywordsAsString that takes the books array as an argument, collects keywords from each book, removes duplicates,
+// and then joins them to create a single string where keywords are separated by a semicolon.
+
+function getKeywordsAsString(books) {
+  const keywords = [];
+
+  for (const book of books) {
+    keywords.push(...book.keywords);
+  }
+
+  const uniqueKeywords = [...new Set(keywords)];
+
+  return uniqueKeywords.join(";");
+}
+
+getKeywordsAsString(books);
+
+// 17.3 Write a function called logBookChapters that takes an array of arrays (like bookChapters) as an argument, and logs each chapter's name to the console together with the page number.
+// The page number should be separated from the chapter's name with underscores (take a look at the example below).
+// Use the padEnd method.
+
+const bookChapters = [
+  ["The Basics", 14],
+  ["Sorting", 254],
+  ["Searching", 372],
+  ["Graphs", 526],
+  ["Strings", 706],
+];
+
+function logBookChapters(chapters) {
+  for (const [chapter, pages] of chapters) {
+    console.log(`${chapter.padEnd(20, "_")} ${pages}`);
+  }
+}
+
+logBookChapters(bookChapters);
