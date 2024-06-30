@@ -666,3 +666,95 @@ console.log(typeof new String("Joey"));
 console.log(typeof new String("Joey").slice(1));
 
 ///////////////////////////////////////
+
+// Working with Strings - Part 2
+
+console.log("----- Working with Strings - Part 2 -----");
+
+// Changing the case of the string
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+console.log("Lisbon".toUpperCase());
+
+// Fix capitalization in name
+
+const passenger = "jOeY";
+const passengerLower = passenger.toLowerCase(); // joey
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1); // Joey
+console.log(passengerCorrect); // Joey
+
+// Function to capitalize the first letter of the string
+const capitalizeName = function (name) {
+  const nameLower = name.toLowerCase();
+  const nameCorrect = nameLower[0].toUpperCase() + nameLower.slice(1);
+  console.log(nameCorrect);
+};
+
+capitalizeName("mArk");
+
+// Comparing emails
+
+const email = "name@email.io";
+const loginEmail = " Name@Email.Io \n";
+
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim();
+console.log(trimmedEmail);
+
+// It can be done in one line
+// It is called chaining methods
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
+
+// Replacing parts of strings
+const priceGB = "290,30£";
+const priceUS = priceGB.replace("£", "$").replace(",", "."); // 290.30$
+console.log(priceUS);
+
+const announcement =
+  "All passengers come to boarding door 23. Boarding door 23!";
+
+// .replace method replaces only the first occurrence of the word
+console.log(announcement.replace("door", "gate")); // All passengers come to boarding gate 23. Boarding door 23!
+
+// .replaceAll method replaces all occurrences of the word
+console.log(announcement.replaceAll("door", "gate")); // All passengers come to boarding gate 23. Boarding gate 23!
+
+// Alternative way to replace all occurrences of the word is to use regular expressions
+console.log(announcement.replace(/door/g, "gate")); // All passengers come to boarding gate 23. Boarding gate 23!
+
+// Booleans
+// .includes method returns true if the word is in the string, false otherwise
+// .startsWith method returns true if the string starts with the word, false otherwise
+// .endsWith method returns true if the string ends with the word, false otherwise
+
+const plane2 = "Airbus A320neo";
+console.log(plane2.includes("A320")); // true
+console.log(plane2.includes("Boeing")); // false
+
+console.log(plane2.startsWith("Airbus")); // true
+console.log(plane2.startsWith("Neo")); // false
+
+if (plane2.startsWith("Airbus") && plane2.endsWith("neo")) {
+  console.log("Part of the new Airbus family");
+}
+
+// Practice exercise
+
+const checkBaggage = function (items) {
+  // Start with converting the string to lowercase to avoid case sensitivity when comparing strings
+  const baggage = items.toLowerCase();
+  if (baggage.includes("knife") || baggage.includes("gun")) {
+    console.log("You are not allowed on board");
+  } else {
+    console.log("Welcome aboard!");
+  }
+};
+
+checkBaggage("I have a laptop, some Food, and a pocket Knife");
+checkBaggage("Socks and camera");
+checkBaggage("Got some snacks and a gun for protection");
+
+///////////////////////////////////////
