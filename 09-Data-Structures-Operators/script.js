@@ -843,12 +843,10 @@ const getAirportCode = (airport) => airport.slice(0, 3).toUpperCase();
 
 for (const flight of flights.split("+")) {
   const [type, from, to, time] = flight.split(";");
-  const output = `${type.startsWith("_Delayed") ? "🔴" : ""} ${type.replaceAll(
-    "_",
-    " "
-  )} from ${getAirportCode(from)} to ${getAirportCode(to)} (${time.replace(
-    ":",
-    "h"
-  )})`.padStart(45);
+  const output = `${type.startsWith("_Delayed") ? "🔴" : ""} ${type
+    .replaceAll("_", " ")
+    .trim()} from ${getAirportCode(from)} to ${getAirportCode(
+    to
+  )} (${time.replace(":", "h")})`.padStart(45);
   console.log(output);
 }
