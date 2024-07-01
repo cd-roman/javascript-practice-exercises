@@ -112,3 +112,23 @@ const high5 = function () {
 // It creates a new level of abstraction, which makes the code more readable and maintainable
 
 ///////////////////////////////////////
+
+// Functions returning other functions
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+// Same function as above, but using arrow functions
+const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
+
+const greeterHey = greet("Hey");
+greeterHey("Joey");
+greeterHey("Monica");
+
+greet("Hello")("Joey");
+greetArr("Hello")("Joey");
+
+///////////////////////////////////////
