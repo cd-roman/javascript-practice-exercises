@@ -132,3 +132,59 @@ greet("Hello")("Joey");
 greetArr("Hello")("Joey");
 
 ///////////////////////////////////////
+
+// The call and apply methods
+
+const lufthansa = {
+  airline: "Lufthansa",
+  iataCode: "LH",
+  bookings: [],
+  // ES6 enhanced object literals
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, "Joey Tribbiani");
+lufthansa.book(635, "Monica Geller");
+console.log(lufthansa);
+
+const eurowings = {
+  airline: "Eurowings",
+  iataCode: "EW",
+  bookings: [],
+};
+
+const book = lufthansa.book;
+
+// Use call method to set the 'this' keyword to eurowings
+book.call(eurowings, 273, "Chandler Bing");
+console.log(eurowings);
+
+book.call(lufthansa, 239, "Rachel Green");
+console.log(lufthansa);
+
+const swiss = {
+  airline: "Swiss Air Lines",
+  iataCode: "LX",
+  bookings: [],
+};
+
+book.call(swiss, 583, "Ross Geller");
+console.log(swiss);
+
+// Apply method (not used in modern JavaScript)
+// The difference between call and apply methods is that apply does not receive a list of arguments, but an array of arguments
+
+const flightData = [583, "George Cooper"];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+// Instead of using the apply method, we can use the call method with the spread operator
+book.call(swiss, ...flightData);
+console.log(swiss);
+
+///////////////////////////////////////
