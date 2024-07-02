@@ -142,3 +142,23 @@ console.log([...arr, ...arr2]); // ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
 console.log(letters.join(' - ')); // 'a - b - c - d - e - f - g - h - i - j'
 
 /////////////////////////////////////
+
+// at method
+
+const arr3 = [16, 95, 38];
+console.log(arr3[0]); // 16
+console.log(arr3.at(0)); // 16
+
+// The at method is useful when we want to get the element at a negative index
+// For example, arr3[-1] would return undefined
+// The old way to get the last element of an array was arr3[arr3.length - 1] or arr3.slice(-1)[0]
+console.log(arr3[arr3.length - 1]); // 38
+console.log(arr3.slice(-1)[0]); // 38
+
+// The at method is a more concise way to get the last element of an array
+console.log(arr3.at(-1)); // 38
+
+// The at method also works with strings
+console.log('Joey'.at(0)); // 'J'
+
+/////////////////////////////////////
