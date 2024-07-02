@@ -74,3 +74,71 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+// Simple Array Methods //
+
+// Slice method
+
+let arr = ['a', 'b', 'c', 'd', 'e'];
+
+console.log(arr.slice(2)); // ['c', 'd', 'e']
+console.log(arr.slice(2, 4)); // ['c', 'd']
+
+// Slice method does not mutate the original array
+console.log(arr); // ['a', 'b', 'c', 'd', 'e']
+
+// Negative slice method returns elements from the end of the array
+console.log(arr.slice(-2)); // ['d', 'e']
+console.log(arr.slice(-1)); // ['e']
+
+// We can mix positive and negative values in slice method
+console.log(arr.slice(1, -2)); // ['b', 'c']
+
+// Create a shallow copy of the array
+console.log(arr.slice()); // ['a', 'b', 'c', 'd', 'e']
+// It is the same as using spread operator
+console.log([...arr]); // ['a', 'b', 'c', 'd', 'e']
+
+// Splice method
+
+// Splice method mutates the original array
+// It returns the removed elements
+console.log(arr.splice(2)); // ['c', 'd', 'e']
+
+// The original array is now ['a', 'b']
+console.log(arr); // ['a', 'b']
+
+// A common use case of splice method is to remove the last element of an array
+arr = ['a', 'b', 'c', 'd', 'e'];
+arr.splice(-1);
+console.log(arr); // ['a', 'b', 'c', 'd']
+
+// The second argument of splice method is the number of elements to remove
+// For example, arr.splice(1, 2) removes 2 elements starting from index 1
+
+// Reverse method
+
+arr = ['a', 'b', 'c', 'd', 'e'];
+const arr2 = ['j', 'i', 'h', 'g', 'f'];
+
+console.log(arr2.reverse()); // ['f', 'g', 'h', 'i', 'j']
+// Reverse method mutates the original array
+console.log(arr2); // ['f', 'g', 'h', 'i', 'j']
+
+// Concat method
+
+const letters = arr.concat(arr2);
+console.log(letters); // ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+// Concat method does not mutate the original arrays
+console.log(arr); // ['a', 'b', 'c', 'd', 'e']
+console.log(arr2); // ['f', 'g', 'h', 'i', 'j']
+
+// Alternatively, the spread operator can be used to concatenate arrays
+console.log([...arr, ...arr2]); // ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+// Join method
+
+// Returns a string with the elements of the array separated by a delimiter
+console.log(letters.join(' - ')); // 'a - b - c - d - e - f - g - h - i - j'
+
+/////////////////////////////////////
