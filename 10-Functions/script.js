@@ -188,3 +188,48 @@ book.call(swiss, ...flightData);
 console.log(swiss);
 
 ///////////////////////////////////////
+
+// The bind method
+// The bind method is similar to the call method, but it does not immediately call the function, instead it returns a new function where the 'this' keyword is bound
+
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+bookEW(233, "Phoebe Buffay");
+
+// We can bind the 'this' keyword and the first argument
+// For example, we can bind the airline and flight number
+// This is called partial application
+const bookEW233 = book.bind(eurowings, 233);
+bookEW233("Rachel Green");
+console.log(eurowings);
+
+// Use objects with event listeners
+lufthansa.planes = 300;
+
+lufthansa.buyPlane = function () {
+  console.log(this);
+
+  this.planes++;
+  console.log(this.planes);
+};
+
+document
+  .querySelector(".buy")
+  .addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
+
+// Partial application with bind method
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+const addVAT = addTax.bind(null, 0.23);
+
+console.log(addVAT(100));
+
+// Another way to do the same thing with a function returning another function
+const addTaxRate = (rate) => (value) => value + value * rate;
+const addVAT2 = addTaxRate(0.23);
+console.log(addVAT2(100));
+
+///////////////////////////////////////
