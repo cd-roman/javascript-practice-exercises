@@ -360,3 +360,72 @@ runOnce();
 console.log(notPrivate); // 46
 
 ///////////////////////////////////////
+
+// Closures
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+// We can't access the passengerCount variable from the outside
+// console.log(passengerCount); // ReferenceError: passengerCount is not defined
+
+console.dir(booker);
+
+console.log("-----More closure examples-----");
+
+// Example 1
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g(); // f is reassigned and creates a closure
+f(); // 46
+
+h(); // f is reassigned again and creates a closure
+f(); // 1554
+
+console.dir(f); // f is reassigned to the last function
+
+// Example 2
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+// The closure has priority over the scope chain
+// For example, the perGroup variable will be used from the closure even if we create a new perGroup variable in the global scope
+const perGroup = 1000;
+
+// The function will still use the perGroup variable from the boardPassengers function
+boardPassengers(180, 3);
+
+///////////////////////////////////////
