@@ -323,3 +323,40 @@ poll.displayResults.call({ answers: [5, 2, 3] }, "string");
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, "string");
 
 ///////////////////////////////////////
+
+// Immediately Invoked Function Expressions (IIFE)
+
+// IIFE is a function that is executed right after it is created
+// It is a function that is only executed once and then it disappears
+
+// Normal function
+const runOnce = function () {
+  console.log("This function is called");
+};
+// Call the function
+runOnce();
+
+// IIFE
+(function () {
+  console.log("This will never run again");
+  // Data incapsulated in the IIFE
+  const isPrivate = 22;
+})();
+
+// console.log(isPrivate); // ReferenceError: isPrivate is not defined
+
+// IIFE with arrow function
+(() => console.log("This will also never run again"))();
+
+// IIFE is used to create a new scope that is hidden from the outside scope
+// Alternitively, we can use block scope with let and const
+
+{
+  const isPrivate = 23;
+  var notPrivate = 46;
+}
+
+// console.log(isPrivate); // ReferenceError: isPrivate is not defined
+console.log(notPrivate); // 46
+
+///////////////////////////////////////
