@@ -65,13 +65,13 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -167,10 +167,10 @@ console.log('Joey'.at(0)); // 'J'
 
 // The forEach method is a higher-order function that takes a callback function as an argument
 
-const movementsExample = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // Using a for-of loop
-for (const movement of movementsExample) {
+for (const movement of movements) {
   if (movement > 0) {
     console.log(`You deposited ${movement}`);
   } else {
@@ -180,7 +180,7 @@ for (const movement of movementsExample) {
 
 console.log('----------forEach----------');
 // Using the forEach method
-movementsExample.forEach(function (movement) {
+movements.forEach(function (movement) {
   if (movement > 0) {
     console.log(`You deposited ${movement}`);
   } else {
@@ -191,7 +191,7 @@ movementsExample.forEach(function (movement) {
 console.log('----------forEach with index of the elements----------');
 // The forEach method can take up to three arguments: the current element, the index, and the array
 // The order of the arguments matters and they must be in this order
-movementsExample.forEach(function (mov, i, arr) {
+movements.forEach(function (mov, i, arr) {
   if (mov > 0) {
     console.log(`Movement ${i + 1}: You deposited ${mov}`);
   } else {
@@ -201,5 +201,36 @@ movementsExample.forEach(function (mov, i, arr) {
 
 // The forEach method can't be used to break out of the loop
 // It means that we can't use the break statement or continue statement inside the callback function
+
+/////////////////////////////////////
+
+// forEach with Maps and Sets
+
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+console.log('----------forEach method with Maps----------');
+
+// The forEach method for maps takes a callback function with three arguments: the value, the key, and the map
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+
+// Similar to maps, when using with sets, the forEach method takes a callback function with three arguments: the value, the key, and the map
+
+const currenciesUnique = new Set(['USD', 'EUR', 'GBP', 'USD', 'EUR']);
+
+console.log('----------forEach method with Sets----------');
+
+console.log(currenciesUnique); // Set(3) {'USD', 'EUR', 'GBP'}
+
+// We don't have keys in sets, so the key argument is the same as the value argument
+// We use an underscore to indicate that we are not going to use the key argument
+currenciesUnique.forEach(function (value, _, set) {
+  console.log(`${value}: ${value}`);
+});
 
 /////////////////////////////////////
