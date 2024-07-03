@@ -162,3 +162,44 @@ console.log(arr3.at(-1)); // 38
 console.log('Joey'.at(0)); // 'J'
 
 /////////////////////////////////////
+
+// forEach method
+
+// The forEach method is a higher-order function that takes a callback function as an argument
+
+const movementsExample = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// Using a for-of loop
+for (const movement of movementsExample) {
+  if (movement > 0) {
+    console.log(`You deposited ${movement}`);
+  } else {
+    console.log(`You withdrew ${Math.abs(movement)}`);
+  }
+}
+
+console.log('----------forEach----------');
+// Using the forEach method
+movementsExample.forEach(function (movement) {
+  if (movement > 0) {
+    console.log(`You deposited ${movement}`);
+  } else {
+    console.log(`You withdrew ${Math.abs(movement)}`);
+  }
+});
+
+console.log('----------forEach with index of the elements----------');
+// The forEach method can take up to three arguments: the current element, the index, and the array
+// The order of the arguments matters and they must be in this order
+movementsExample.forEach(function (mov, i, arr) {
+  if (mov > 0) {
+    console.log(`Movement ${i + 1}: You deposited ${mov}`);
+  } else {
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)}`);
+  }
+});
+
+// The forEach method can't be used to break out of the loop
+// It means that we can't use the break statement or continue statement inside the callback function
+
+/////////////////////////////////////
