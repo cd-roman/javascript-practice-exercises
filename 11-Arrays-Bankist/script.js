@@ -82,6 +82,13 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance}€`;
+};
+
+calcDisplayBalance(account1.movements);
+
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -393,5 +400,41 @@ console.log(deposits); // [200, 450, 3000, 70, 1300]
 
 const withdrawals = movements2.filter(mov => mov < 0);
 console.log(withdrawals); // [-400, -650, -130]
+
+/////////////////////////////////////
+
+// Reduce method
+
+console.log('----------Reduce method----------');
+
+// The reduce method executes a reducer function on each element of the array, resulting in a single output value
+
+console.log(movements2);
+
+// Similarly to forEach and map methods, the reduce method takes a callback function as an argument
+// The main difference is that the reduce method has an accumulator as an argument
+// The accumulator is like a snowball that keeps accumulating the values
+const balance = movements2.reduce(function (acc, cur, i, arr) {
+  console.log(`Iteration ${i}: ${acc}`);
+  return acc + cur;
+}, 0);
+console.log(balance); // 3840
+
+// A more concise way to write the same example using an arrow function
+const balanceArrow = movements2.reduce((acc, cur) => acc + cur, 0);
+console.log(balanceArrow); // 3840
+
+// Maximum value of the movements array
+const max = movements2.reduce(
+  (acc, mov) => (acc > mov ? acc : mov),
+  movements2[0]
+);
+console.log(max); // 3000
+
+const min = movements2.reduce(
+  (acc, mov) => (acc < mov ? acc : mov),
+  movements2[0]
+);
+console.log(min); // -650
 
 /////////////////////////////////////
