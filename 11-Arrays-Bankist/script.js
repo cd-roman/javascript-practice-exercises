@@ -378,3 +378,20 @@ const usernameInitials = userFullName
 
 console.log(typeof usernameInitials); // string
 console.log(usernameInitials); // stw
+
+/////////////////////////////////////
+
+// Filter method
+
+console.log('----------Filter method----------');
+
+// The filter method creates a new array with elements that pass the test implemented by the callback function
+
+const deposits = movements2.filter(mov => mov > 0);
+console.log(movements2); // [200, 450, -400, 3000, -650, -130, 70, 1300]
+console.log(deposits); // [200, 450, 3000, 70, 1300]
+
+const withdrawals = movements2.filter(mov => mov < 0);
+console.log(withdrawals); // [-400, -650, -130]
+
+/////////////////////////////////////
