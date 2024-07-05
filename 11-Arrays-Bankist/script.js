@@ -308,3 +308,48 @@ checkDogs(jData, kData);
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 
 /////////////////////////////////////
+
+// Data Transformation: Map, Filter, and Reduce methonds //
+
+const movements2 = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const eurToUsd = 1.1;
+
+// Map method
+
+console.log('----------Map method----------');
+
+// The map method creates a new array by applying a callback function to each element of the original array
+
+const movementsUSD = movements2.map(function (mov) {
+  return mov * eurToUsd;
+});
+
+console.log(movements); // [200, 450, -400, 3000, -650, -130, 70, 1300]
+console.log(movementsUSD); // [220, 495, -440, 3300, -715, -143, 77, 1430]
+
+// Here is the same example using for-of loop
+
+const movementsUSDfor = [];
+for (const mov of movements2) {
+  movementsUSDfor.push(mov * eurToUsd);
+}
+console.log(movementsUSDfor); // [220, 495, -440, 3300, -715, -143, 77, 1430]
+
+// An example above with map method is more concise and aligned with functional programming principles
+
+// The map method with an arrow function
+
+const movementsUSDarrow = movements2.map(mov => mov * eurToUsd);
+console.log(movementsUSDarrow); // [220, 495, -440, 3300, -715, -143, 77, 1430]
+
+// The map method can also take the index and the array as arguments
+
+const movementsDescriptions = movements2.map(
+  (mov, i) =>
+    `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+);
+
+console.log(movementsDescriptions);
