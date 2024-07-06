@@ -491,7 +491,10 @@ GOOD LUCK 😀
 const calcAverageHumanAge = function (ages) {
   const humanAges = ages.map(age => (age <= 2 ? age * 2 : 16 + age * 4));
   const adults = humanAges.filter(age => age >= 18);
-  const average = adults.reduce((acc, cur) => acc + cur, 0) / adults.length;
+  const average = adults.reduce(
+    (acc, cur, i, arr) => acc + cur / arr.length,
+    0
+  );
 
   return average;
 };
@@ -520,3 +523,31 @@ const totalDepositsUSD = movements2
   .reduce((acc, mov) => acc + mov, 0);
 
 console.log(totalDepositsUSD); // 5522
+
+/////////////////////////////////////
+
+/*
+Coding Challenge #3
+
+Rewrite the 'calcAverageHumanAge' function from Challenge #2, but this time
+as an arrow function, and using chaining!
+
+Test data:
+§ Data 1: [5, 2, 4, 1, 15, 8, 3]
+§ Data 2: [16, 6, 10, 5, 6, 1, 4]
+GOOD LUCK 😀
+*/
+
+const calcAverageHumanAgeChaining = function (ages) {
+  const average = ages
+    .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
+    .filter(age => age >= 18)
+    .reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
+  return average;
+};
+
+const avgChain1 = calcAverageHumanAgeChaining([5, 2, 4, 1, 15, 8, 3]);
+const avgChain2 = calcAverageHumanAgeChaining([16, 6, 10, 5, 6, 1, 4]);
+
+console.log(avgChain1);
+console.log(avgChain2);
