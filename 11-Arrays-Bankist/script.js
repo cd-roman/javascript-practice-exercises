@@ -542,7 +542,7 @@ const calcAverageHumanAgeChaining = function (ages) {
   const average = ages
     .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
     .filter(age => age >= 18)
-    .reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
+    .reduce((acc, cur, _, arr) => acc + cur / arr.length, 0);
   return average;
 };
 
@@ -551,3 +551,26 @@ const avgChain2 = calcAverageHumanAgeChaining([16, 6, 10, 5, 6, 1, 4]);
 
 console.log(avgChain1);
 console.log(avgChain2);
+
+/////////////////////////////////////
+
+// The find method
+
+console.log('----------Find method----------');
+
+// The find method returns the first element in the array that satisfies the provided testing function
+
+console.log(movements2);
+
+const firstWithdrawal = movements2.find(mov => mov < 0);
+console.log(firstWithdrawal); // -400
+console.log(typeof firstWithdrawal); // number
+
+console.log(accounts);
+
+// The find method can be used to search for an element in an array of objects with a specific property
+
+const accountSearch = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(accountSearch); // {owner: 'Jessica Davis', movements: Array(8), interestRate: 1.5, pin: 2222, username: 'jd'}
+
+/////////////////////////////////////
