@@ -713,3 +713,45 @@ console.log(movements2.every(deposit)); // false
 console.log(movements2.filter(deposit)); // [200, 450, 3000, 70, 1300]
 
 /////////////////////////////////////
+
+// Flat and FlatMap methods
+
+console.log('----------Flat and FlatMap methods----------');
+
+// Flat method creates a new array with all sub-array elements concatenated into it recursively up to the specified depth
+
+const arr4 = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr4.flat()); // [1, 2, 3, 4, 5, 6, 7, 8]
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat()); // [Array(2), 3, 4, Array(2), 7, 8]
+
+// The flat method can be used with an argument to specify the depth of the nested arrays to be flattened
+console.log(arrDeep.flat(2)); // [1, 2, 3, 4, 5, 6, 7, 8]
+
+const accountMovements = accounts.map(acc => acc.movements);
+console.log(accountMovements); // [[200, 450, -400, 3000, -650, -130, 70, 1300], [5000, 3400, -150, -790, -3210, -1000, 8500, -30], [200, -200, 340, -300, -20, 50, 400, -460], [430, 1000, 700, 50, 90]]
+
+const allMovements = accountMovements.flat();
+console.log(allMovements); // [200, 450, -400, 3000, -650, -130, 70, 1300, 5000, 3400, -150, -790, -3210, -1000, 8500, -30, 200, -200, 340, -300, -20, 50, 400, -460, 430, 1000, 700, 50, 90]
+
+// We can chain the map flat, and reduce methods to calculate the overall balance of all accounts
+
+const overallBalance = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance); // 17840
+
+// Using flat and map methods together is a common use case, so there is a flatMap method
+// The flatMap method is a combination of map and flat methods
+
+const overallBalance2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance2); // 17840
+
+// The only concern with flatMap method is that it only goes one level deep
+// If we have nested arrays, we need to use flat method with an argument to specify the depth, for example flat(2)
+
+/////////////////////////////////////
