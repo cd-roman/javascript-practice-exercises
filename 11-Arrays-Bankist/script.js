@@ -183,6 +183,23 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add movement
+    currentAccount.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
+  } else {
+    alert('You can not get a loan. Please request a lower amount.');
+  }
+  inputLoanAmount.value = '';
+});
+
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -657,3 +674,22 @@ const accountSearch = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(accountSearch); // {owner: 'Jessica Davis', movements: Array(8), interestRate: 1.5, pin: 2222, username: 'jd'}
 
 /////////////////////////////////////
+
+// Some and Every methods
+
+console.log('----------Some and Every methods----------');
+
+// The some method tests whether at least one element in the array passes the test implemented by the provided function
+
+console.log(movements2);
+
+// Includes method checks if the array includes a certain value
+// It checks only equality
+console.log(movements2.includes(200)); // true, because 200 is in the array
+
+// Unline includes method, some method checks the condition with a callback function
+const anyDeposits = movements2.some(mov => mov < 200);
+console.log(anyDeposits); // true
+
+const anyDeposits2 = movements2.some(mov => mov > 5000);
+console.log(anyDeposits2); // false
