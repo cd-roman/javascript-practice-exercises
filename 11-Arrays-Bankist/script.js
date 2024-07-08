@@ -61,10 +61,14 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
-  movements.forEach(function (mov, i) {
+  // The slice method is used to create a shallow copy of the movements array
+  // Thus, we are not mutating the original array, and sort method can be used for the copy array
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -221,6 +225,14 @@ btnClose.addEventListener('click', function (e) {
     labelWelcome.textContent = `Log in to get started`;
   }
   inputCloseUsername.value = inputClosePin.value = '';
+});
+
+let sorted = false;
+
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
 
 /////////////////////////////////////////////////
@@ -755,3 +767,29 @@ console.log(overallBalance2); // 17840
 // If we have nested arrays, we need to use flat method with an argument to specify the depth, for example flat(2)
 
 /////////////////////////////////////
+
+// Sorting Arrays
+
+console.log('----------Sorting Arrays----------');
+
+// The sort method mutates the original array
+
+// Strings
+const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+console.log(owners.sort()); // ['Adam', 'Jonas', 'Martha', 'Zach']
+console.log(owners); // ['Adam', 'Jonas', 'Martha', 'Zach']
+console.log(owners.reverse()); // ['Zach', 'Martha', 'Jonas', 'Adam']
+
+// Numbers
+console.log(movements2);
+
+// return < 0, A, B (keep order)
+// return > 0, B, A (switch order)
+
+// Ascending order
+movements2.sort((a, b) => a - b);
+console.log(movements2); // [-650, -400, -130, 70, 200, 450, 1300, 3000]
+
+// Descending order
+movements2.sort((a, b) => b - a);
+console.log(movements2); // [3000, 1300, 450, 200, 70, -130, -400, -650]
