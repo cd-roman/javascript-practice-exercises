@@ -693,3 +693,23 @@ console.log(anyDeposits); // true
 
 const anyDeposits2 = movements2.some(mov => mov > 5000);
 console.log(anyDeposits2); // false
+
+/////////////////////////////////////
+
+// Every method
+
+// The every method tests whether ALL elements in the array pass the test implemented by the provided function
+
+console.log(movements2);
+
+console.log(movements2.every(mov => mov > 0)); // false
+console.log(account4.movements.every(mov => mov > 0)); // true
+
+// Separate callback function that can be reused with different array methods
+const deposit = mov => mov > 0;
+
+console.log(movements2.some(deposit)); // true
+console.log(movements2.every(deposit)); // false
+console.log(movements2.filter(deposit)); // [200, 450, 3000, 70, 1300]
+
+/////////////////////////////////////
