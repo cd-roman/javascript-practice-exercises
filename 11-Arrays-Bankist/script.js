@@ -793,3 +793,51 @@ console.log(movements2); // [-650, -400, -130, 70, 200, 450, 1300, 3000]
 // Descending order
 movements2.sort((a, b) => b - a);
 console.log(movements2); // [3000, 1300, 450, 200, 70, -130, -400, -650]
+
+/////////////////////////////////////
+
+// More ways of creating and filling arrays
+
+console.log('----------More ways of creating and filling arrays----------');
+
+// Create an array with 7 empty elements
+const x = new Array(7);
+console.log(x); // [empty x 7]
+
+// Fill method
+// The fill method fills all the elements of an array from a start index to an end index with a static value
+// The fill method mutates the original array
+x.fill(1);
+console.log(x); // [1, 1, 1, 1, 1, 1, 1]
+
+// The fill method can take a start index and an end index as arguments
+// For example, fill the array with 20 starting from index 3 to index 5
+x.fill(20, 3, 5); // [1, 1, 1, 2, 2, 1, 1]
+console.log(x);
+
+// Array.from method
+
+// The Array.from function creates a new shallow-copied array from an array-like or iterable object
+// The first argument is the object to convert to an array
+// The second argument is a map function that can be used to manipulate the elements of the new array
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y); // [1, 1, 1, 1, 1, 1, 1]
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z); // [1, 2, 3, 4, 5, 6, 7]
+
+// Create an array with 100 dice rolls
+const diceRolls = Array.from(
+  { length: 100 },
+  () => Math.trunc(Math.random() * 6) + 1
+);
+console.log(diceRolls);
+
+// Create array from the movements of the UI
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', ''))
+  );
+  console.log(movementsUI);
+});
