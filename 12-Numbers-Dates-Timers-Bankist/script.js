@@ -466,3 +466,66 @@ console.log(20n + " is a big number"); // 20 is a big number
 console.log(10n / 3n); // 3n
 
 /////////////////////////////////////////////////
+
+// Dates and Times
+
+// Create a date
+// There are four ways to create a date in JS
+
+// 1. Constructor
+const now = new Date();
+console.log(now); // current date and time
+
+// 2. Parse the date from a Date string
+console.log(new Date("Aug 02 2021 18:05:41"));
+
+// This option is not recommended, because it is not consistent across browsers
+console.log(new Date("December 24, 2015"));
+
+// Parse the date from the object
+console.log(new Date(account1.movementsDates[0]));
+
+// 3. Pass the date as arguments
+// Year, Month, Day, Hour, Minute, Second, Millisecond
+console.log(new Date(2037, 10, 19, 15, 23, 5)); // November 19, 2037, 15:23:05
+// The month is zero based, so 10 is November
+
+// 4. Pass the number of milliseconds since Unix time (January 1, 1970)
+console.log(new Date(0)); // January 1, 1970
+
+// 3 days, 24 hours, 60 minutes, 60 seconds, 1000 milliseconds
+console.log(new Date(3 * 24 * 60 * 60 * 1000)); // January 4, 1970
+
+// 3 * 24 * 60 * 60 * 1000 which is 259200000 milliseconds is a timestamp
+
+// Working with dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear()); // 2037
+console.log(future.getMonth()); // 10 is November
+console.log(future.getDate()); // 19
+console.log(future.getDay()); // 4 is Thursday
+console.log(future.getHours()); // 15
+console.log(future.getMinutes()); // 23
+console.log(future.getSeconds()); // 0
+
+// Format the date
+console.log(future.toISOString()); // 2037-11-19T14:23:00.000Z
+
+// Convert the date to a string
+console.log(future.toString());
+
+// Get the timestamp for the date
+console.log(future.getTime()); // 2142251380000
+
+// We can reverse the process and create a date from the timestamp
+console.log(new Date(2142253380000)); // November 19, 2037, 15:23:00
+
+// Get the current timestamp
+console.log(Date.now());
+
+// Set the date
+future.setFullYear(2040);
+console.log(future); // November 19, 2040, 15:23:00
+
+// We can also set the month, day, hour, minute, second, and millisecond
