@@ -374,3 +374,30 @@ console.log((2.345).toFixed(2)); // 2.35
 console.log(+(2.345).toFixed(2)); // 2.35
 
 /////////////////////////////////////////////////
+
+// Remainder Operator
+// Remainder operator is same as modulo operator
+
+console.log(5 % 2); // 1
+console.log(8 % 3); // 2
+
+// Remainder operator is used to check if the number is even or odd
+console.log(6 % 2); // 0
+console.log(7 % 2); // 1
+
+const isEven = (n) => n % 2 === 0;
+
+console.log(isEven(6)); // true
+console.log(isEven(7)); // false
+console.log(isEven(527)); // false
+
+// The remainder operator is used to check if the number is divisible by another number
+
+labelBalance.addEventListener("click", function () {
+  [...document.querySelectorAll(".movements__row")].forEach(function (row, i) {
+    if (i % 2 === 0) row.style.backgroundColor = "orangered";
+    if (i % 3 === 0) row.style.backgroundColor = "blue";
+  });
+});
+
+/////////////////////////////////////////////////
