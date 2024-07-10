@@ -401,3 +401,32 @@ labelBalance.addEventListener("click", function () {
 });
 
 /////////////////////////////////////////////////
+
+// Numeric Separators
+// Numeric separators are used to separate numbers for better readability
+
+const diameter = 287460000000;
+console.log(diameter); // 287460000000
+
+// Numeric separators are underscore that can be used to separate numbers
+const diameter1 = 287_460_000_000;
+console.log(diameter1); // 287460000000
+
+const price = 345_99;
+console.log(price); // 34599
+
+const transferFee1 = 15_00;
+const transferFee2 = 1_500;
+console.log(transferFee1, transferFee2); // 1500 1500
+
+const PI = 3.14_15;
+console.log(PI); // 3.1415
+
+// Numeric separators can't be used with strings, and will return NaN
+// It means that numeric separators can't be used with Number function, for example for API
+console.log(Number("230_000")); // NaN
+
+// parseInt also doesn't work with numeric separators, and will return only the number before the separator
+console.log(Number.parseInt("230_000")); // 230
+
+/////////////////////////////////////////////////
