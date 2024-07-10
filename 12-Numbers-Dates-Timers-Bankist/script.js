@@ -430,3 +430,39 @@ console.log(Number("230_000")); // NaN
 console.log(Number.parseInt("230_000")); // 230
 
 /////////////////////////////////////////////////
+
+// Working with BigInt
+
+// BigInt is a new primitive in JS that allows to work with large numbers, presened in 2020
+
+// This is the maximum number that can be represented in JS
+// It is 2 to the power of 53 - 1
+console.log(2 ** 53 - 1); // 9007199254740991
+
+console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
+
+// BigInt can store numbers larger than the maximum safe integer
+// To create BigInt, add n at the end of the number
+console.log(9007199254740991135n); // 9007199254740991n
+
+// Operations with BigInt
+console.log(10000n + 10000n); // 20000n
+console.log(10000n * 10000n); // 100000000n
+
+// BigInt and regular numbers can't be mixed
+// console.log(10000n + 10000); // Error
+
+// We can use comparison operators with BigInt and regular numbers
+// Except for strict equality operators, which will return false
+console.log(10000n > 10000); // false
+console.log(20n > 15); // true
+console.log(10000n === 10000); // false
+console.log(20n == 20); // true
+console.log(typeof 20n); // bigint
+console.log(20n == "20"); // true
+console.log(20n + " is a big number"); // 20 is a big number
+
+// Divisions with BigInt
+console.log(10n / 3n); // 3n
+
+/////////////////////////////////////////////////
