@@ -269,14 +269,16 @@ btnLoan.addEventListener("click", function (e) {
     amount > 0 &&
     currentAccount.movements.some((mov) => mov >= amount * 0.1)
   ) {
-    // Add movement
-    currentAccount.movements.push(amount);
+    setTimeout(function () {
+      // Add movement
+      currentAccount.movements.push(amount);
 
-    // Add loan date
-    currentAccount.movementsDates.push(new Date().toISOString());
+      // Add loan date
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+    }, 2000);
   }
   inputLoanAmount.value = "";
 });
@@ -619,3 +621,49 @@ console.log(
   navigator.language,
   new Intl.NumberFormat(navigator.language).format(num)
 );
+
+/////////////////////////////////////////////////
+
+// Timers: setTimeout and setInterval
+
+// setTimeout - calls a function after a certain amount of time
+// The first argument is the callback function
+// The second argument is the time in milliseconds
+setTimeout(() => console.log("Here is your pizza 🍕"), 3000);
+console.log("Waiting...");
+
+// We can pass arguments to the callback function after the time
+setTimeout(
+  (ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing2}`),
+  3000,
+  "olives",
+  "spinach"
+);
+
+// We can also pass an array of arguments to the callback function using spread operator
+const ingredients = ["olives", "spinach"];
+setTimeout(
+  (...ing) => console.log(`Here is your pizza with ${ing.join(" and ")}`),
+  3000,
+  ...ingredients
+);
+
+console.log("Waiting...");
+
+// We can cancel the setTimeout using clearTimeout
+const pizzaTimer = setTimeout(
+  (...ing) => console.log(`Here is your pizza with ${ing.join(" and ")}`),
+  3000,
+  ...ingredients
+);
+
+if (ingredients.includes("spinach")) clearTimeout(pizzaTimer);
+
+// setInterval - calls a function every certain amount of time
+
+// setInterval(function () {
+//   const now = new Date();
+//   console.log(now);
+// }, 3000);
+
+/////////////////////////////////////////////////
