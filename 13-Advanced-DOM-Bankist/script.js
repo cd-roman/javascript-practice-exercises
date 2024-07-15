@@ -195,3 +195,41 @@ logo.classList.add("c");
 logo.classList.remove("c");
 logo.classList.toggle("c");
 console.log(logo.classList.contains("c"));
+
+///////////////////////////////////////
+
+// Types of Events and Event Handlers
+const h1 = document.querySelector("h1");
+
+// We can add an event listener to an element using the addEventListener method
+// It takes two arguments: the event type and the event handler
+// The event handler is a function that will be called when the event occurs
+
+// h1.addEventListener("mouseenter", function (e) {
+//   alert("addEventListener: Great! You are reading the heading :D");
+// });
+
+// Alternative way to add an event listener to an element is to use the on-event property
+
+// h1.onmouseenter = function (e) {
+//   alert("on-event: Great! You are reading the heading :D");
+// };
+
+// The addEventListener method is the modern way to add event listeners
+// It is the recommended way to add event listeners
+
+// We can create a separate function for the event handler
+const alertH1 = function (e) {
+  alert("addEventListener: Great! You are reading the heading :D");
+
+  // We can remove the event listener after the first event
+  h1.removeEventListener("mouseenter", alertH1);
+
+  // Thus, the event listener will only work once
+};
+
+// And then pass the function as the second argument to the addEventListener method
+h1.addEventListener("mouseenter", alertH1);
+
+// We can also remove event listeners after some time using the setTimeout method
+setTimeout(() => h1.removeEventListener("mouseenter", alertH1), 3000);
