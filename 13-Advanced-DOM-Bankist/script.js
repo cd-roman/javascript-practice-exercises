@@ -109,3 +109,56 @@ document
 
 // For example:
 // header.insertAdjacentHTML("afterbegin", "<h2>Welcome to the bank!</h2>");
+
+///////////////////////////////////////
+
+// Styles, Attributes, and Classes
+
+// Styles
+message.style.backgroundColor = "#37383d";
+message.style.width = "120%";
+
+console.log(message.style.color); // This will not work because it is not an inline style
+console.log(message.style.backgroundColor); // This will work because it is an inline style
+
+// We can use the getComputedStyle method to get the computed styles, which are the styles that are actually applied to the element
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
+
+// We can also set the custom properties using the setProperty method
+// It's also called CSS variables
+// document.documentElement.style.setProperty("--color-primary", "orangered");
+
+// Attributes
+// We can get the attributes of an element using the getAttribute method or directly on the property
+const logo = document.querySelector(".nav__logo");
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.getAttribute("src"));
+console.log(logo.className);
+
+// We can set the attributes of an element using the setAttribute method or directly on the property
+logo.alt = "Beautiful minimalist logo";
+
+// We can even set the custom attributes
+logo.setAttribute("company", "Bankist");
+console.log(logo.getAttribute("company")); // This will log the value of the custom attribute
+
+const link = document.querySelector(".nav__link--btn");
+console.log(link.href);
+console.log(link.getAttribute("href"));
+
+// Data attributes
+// We can use data attributes to store data in the HTML
+// The data attributes always start with "data-"
+console.log(logo.dataset.versionNumber);
+
+// Classes
+// We can add, remove, and toggle classes using the classList property
+logo.classList.add("c");
+logo.classList.remove("c");
+logo.classList.toggle("c");
+console.log(logo.classList.contains("c"));
