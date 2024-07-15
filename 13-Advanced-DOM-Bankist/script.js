@@ -1,6 +1,39 @@
 "use strict";
 
 ///////////////////////////////////////
+// Smooth scrolling
+
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+btnScrollTo.addEventListener("click", function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+
+  // Get the current scroll position
+  console.log("Current scroll (X/Y)", window.scrollX, window.scrollY);
+
+  // Get the current height and width of the viewport
+  console.log(
+    "height/width viewport",
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // Old way to scroll
+  // window.scrollTo({
+  //   left: s1coords.left + window.scrollX,
+  //   top: s1coords.top + window.scrollY,
+  //   behavior: "smooth",
+  // });
+
+  // Modern way to scroll
+  section1.scrollIntoView({ behavior: "smooth" });
+});
+
+///////////////////////////////////////
 // Modal window
 
 const modal = document.querySelector(".modal");
