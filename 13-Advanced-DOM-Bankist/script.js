@@ -233,3 +233,61 @@ h1.addEventListener("mouseenter", alertH1);
 
 // We can also remove event listeners after some time using the setTimeout method
 setTimeout(() => h1.removeEventListener("mouseenter", alertH1), 3000);
+
+///////////////////////////////////////
+
+// Event Propagation: Bubbling and Capturing
+
+// Event propagation is the process of an event being fired and propagated to the parent elements
+
+// Generate random color
+
+const randomtInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomRGB = () =>
+  `rgb(${randomtInt(0, 255)}, ${randomtInt(0, 255)}, ${randomtInt(0, 255)})`;
+
+console.log(randomRGB());
+
+// Use the random color for the background of the sections
+// document.querySelector(".nav__link").addEventListener("click", function (e) {
+//   this.style.backgroundColor = randomRGB();
+//   console.log("LINK", e.target, e.currentTarget);
+// });
+
+// document.querySelector(".nav__links").addEventListener("click", function (e) {
+//   this.style.backgroundColor = randomRGB();
+//   console.log("CONTAINER", e.target, e.currentTarget);
+// });
+
+// document.querySelector(".nav").addEventListener("click", function (e) {
+//   this.style.backgroundColor = randomRGB();
+//   console.log("NAV", e.target, e.currentTarget);
+// });
+
+// The event propagation has two phases: capturing and bubbling
+// The capturing phase is the phase in which the event is captured by the parent elements
+// The bubbling phase is the phase in which the event bubbles up to the parent elements
+
+// The bubbling phase is the default behavior of the event propagation
+// The event propagation can be stopped using the stopPropagation method
+// But it is not recommended to stop the event propagation unless it is absolutely necessary
+// The syntax is e.stopPropagation()
+
+// The capturing phase can be used by passing a third argument to the addEventListener method
+// It allows us to listen for events in the capturing phase instead of the bubbling phase
+// The third argument is an object with the capture property set to true
+// The syntax is element.addEventListener("click", function, true or false)
+
+// For example:
+// document.querySelector(".nav").addEventListener(
+//   "click",
+//   function (e) {
+//     this.style.backgroundColor = randomRGB();
+//     console.log("LINK", e.target, e.currentTarget);
+//   },
+//   true
+// );
+
+// However, capturing phase is rarely used in practice
