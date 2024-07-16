@@ -61,6 +61,36 @@ document.querySelector(".nav__links").addEventListener("click", function (e) {
 });
 
 ///////////////////////////////////////
+
+// Tabbed component
+
+const tabs = document.querySelectorAll(".operations__tab");
+const tabsContainer = document.querySelector(".operations__tab-container");
+const tabsContent = document.querySelectorAll(".operations__content");
+
+// Use event delegation for all tabs
+tabsContainer.addEventListener("click", function (e) {
+  // Get the clicked tab using matching strategy
+  const clicked = e.target.closest(".operations__tab");
+
+  // Guard clause
+  // If the clicked element is not a tab, then return
+  if (!clicked) return;
+
+  // Active tab
+  // First, we remove the active class from all of them, and then add it to the clicked tab
+  tabs.forEach((t) => t.classList.remove("operations__tab--active"));
+  clicked.classList.add("operations__tab--active");
+  // Remove active class from content areas
+  tabsContent.forEach((c) => c.classList.remove("operations__content--active"));
+
+  // Activate content area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add("operations__content--active");
+});
+
+///////////////////////////////////////
 // LECTURES
 ///////////////////////////////////////
 
