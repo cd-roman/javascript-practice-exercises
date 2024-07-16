@@ -314,3 +314,48 @@ btnScrollTo.addEventListener("click", function (e) {
 });
 
 ///////////////////////////////////////
+
+// DOM Traversing
+
+// The DOM traversing is the process of moving up and down the DOM tree
+// It is used to select elements based on their relationship to other elements
+
+// For example, h1 doesn't have a class of highlight, but its children elements do
+console.log(h1.querySelectorAll(".highlight"));
+
+// We can see all the children elements of h1 using the childNodes property
+// It will give us any single node, including text nodes, comments, etc.
+console.log(h1.childNodes);
+
+// Often we want to select only the elements, not the text nodes
+// We can use the children property to get only the elements
+console.log(h1.children);
+// The children property returns an HTMLCollection, which is a live collection
+// It works only for direct children
+
+// We can slect first and last child elements using the firstElementChild and lastElementChild properties
+// We can also set the property of an element
+h1.firstElementChild.style.color = "white";
+h1.lastElementChild.style.color = "orangered";
+
+// Going upwards: parents
+// We can select the parent element using the parentElement property or parentNode property
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+// We can also select the parent element using the closest method
+// h1.closest(".header").style.background = "var(--gradient-secondary)";
+
+// Going sideways: siblings
+// We can select the sibling elements using the nextElementSibling and previousElementSibling properties
+console.log(h1.previousElementSibling); // null
+console.log(h1.nextElementSibling); // h4
+
+// To get all the sibling elements, we can use the children property of the parent element
+// It gives us an HTMLCollection of all the sibling elements, including the element itself
+console.log(h1.parentElement.children);
+
+// We can use this method to style the sibling elements
+// [...h1.parentElement.children].forEach(function (el) {
+//   if (el !== h1) el.style.transform = "scale(0.5)";
+// });
