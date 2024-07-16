@@ -1,45 +1,14 @@
 "use strict";
 
-///////////////////////////////////////
-// Smooth scrolling
-
-const btnScrollTo = document.querySelector(".btn--scroll-to");
-const section1 = document.querySelector("#section--1");
-
-btnScrollTo.addEventListener("click", function (e) {
-  const s1coords = section1.getBoundingClientRect();
-  console.log(s1coords);
-
-  console.log(e.target.getBoundingClientRect());
-
-  // Get the current scroll position
-  console.log("Current scroll (X/Y)", window.scrollX, window.scrollY);
-
-  // Get the current height and width of the viewport
-  console.log(
-    "height/width viewport",
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  );
-
-  // Old way to scroll
-  // window.scrollTo({
-  //   left: s1coords.left + window.scrollX,
-  //   top: s1coords.top + window.scrollY,
-  //   behavior: "smooth",
-  // });
-
-  // Modern way to scroll
-  section1.scrollIntoView({ behavior: "smooth" });
-});
-
-///////////////////////////////////////
-// Modal window
-
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+///////////////////////////////////////
+// Modal window
 
 const openModal = function (e) {
   e.preventDefault();
@@ -60,6 +29,34 @@ overlay.addEventListener("click", closeModal);
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape" && !modal.classList.contains("hidden")) {
     closeModal();
+  }
+});
+
+///////////////////////////////////////
+
+// Page navigation
+
+// Attaching the event listener to each element is not efficient
+// document.querySelectorAll(".nav__link").forEach(function (el) {
+//   el.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute("href");
+//     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+//   });
+// });
+
+// The better way to do this is to use event delegation
+// Event delegation is the process of attaching the event listener to a common parent element
+// And then determining on which element the event originated
+
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  e.preventDefault();
+  console.log(e.target);
+
+  // Matching strategy
+  if (e.target.classList.contains("nav__link")) {
+    const id = e.target.getAttribute("href");
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   }
 });
 
@@ -291,3 +288,29 @@ console.log(randomRGB());
 // );
 
 // However, capturing phase is rarely used in practice
+
+///////////////////////////////////////
+
+// Smooth scrolling
+
+btnScrollTo.addEventListener("click", function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+
+  // Get the current scroll position
+  console.log("Current scroll (X/Y)", window.scrollX, window.scrollY);
+
+  // Get the current height and width of the viewport
+  console.log(
+    "height/width viewport",
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // Modern way to scroll
+  section1.scrollIntoView({ behavior: "smooth" });
+});
+
+///////////////////////////////////////
