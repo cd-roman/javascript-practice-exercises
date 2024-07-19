@@ -597,3 +597,27 @@ console.log(h1.parentElement.children);
 // [...h1.parentElement.children].forEach(function (el) {
 //   if (el !== h1) el.style.transform = "scale(0.5)";
 // });
+
+///////////////////////////////////////
+
+// Lifecycle DOM Events
+
+// The DOM lifecycle has three stages: loading, interacting, and closing
+
+// The DOMContentLoaded event is fired when the HTML is completely parsed and the DOM tree is built
+document.addEventListener("DOMContentLoaded", function (e) {
+  console.log("HTML parsed and DOM tree built!", e);
+});
+
+// The load event is fired when the HTML and all the external resources like images, stylesheets, etc. are completely loaded
+// It is fired after the DOMContentLoaded event
+window.addEventListener("load", function (e) {
+  console.log("Page fully loaded!", e);
+});
+
+// The beforeunload event is fired when the user tries to leave the page
+// It is used to show a warning message to the user
+// window.addEventListener("beforeunload", (event) => {
+//   event.preventDefault();
+//   event.returnValue = "";
+// });
