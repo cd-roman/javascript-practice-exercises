@@ -208,6 +208,45 @@ const imgObserver = new IntersectionObserver(loadImg, {
 
 imgTargets.forEach((img) => imgObserver.observe(img));
 
+// Slider component
+const slides = document.querySelectorAll(".slide");
+const btnLeft = document.querySelector(".slider__btn--left");
+const btnRight = document.querySelector(".slider__btn--right");
+
+let currentSlide = 0;
+const maxSlide = slides.length;
+
+const goToSlide = function (slide) {
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+  );
+};
+
+goToSlide(0);
+
+const nextSlide = function () {
+  if (currentSlide === maxSlide - 1) {
+    currentSlide = 0;
+  } else {
+    currentSlide++;
+  }
+
+  goToSlide(currentSlide);
+};
+
+const prevSlide = function () {
+  if (currentSlide === 0) {
+    currentSlide = maxSlide - 1;
+  } else {
+    currentSlide--;
+  }
+
+  goToSlide(currentSlide);
+};
+
+btnRight.addEventListener("click", nextSlide);
+btnLeft.addEventListener("click", prevSlide);
+
 ///////////////////////////////////////
 // LECTURES
 ///////////////////////////////////////
@@ -374,7 +413,7 @@ const alertH1 = function (e) {
 };
 
 // And then pass the function as the second argument to the addEventListener method
-h1.addEventListener("mouseenter", alertH1);
+// h1.addEventListener("mouseenter", alertH1);
 
 // We can also remove event listeners after some time using the setTimeout method
 setTimeout(() => h1.removeEventListener("mouseenter", alertH1), 3000);
@@ -483,8 +522,8 @@ console.log(h1.children);
 
 // We can slect first and last child elements using the firstElementChild and lastElementChild properties
 // We can also set the property of an element
-h1.firstElementChild.style.color = "white";
-h1.lastElementChild.style.color = "orangered";
+// h1.firstElementChild.style.color = "white";
+// h1.lastElementChild.style.color = "orangered";
 
 // Going upwards: parents
 // We can select the parent element using the parentElement property or parentNode property
