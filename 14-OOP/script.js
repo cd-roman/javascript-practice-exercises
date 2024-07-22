@@ -32,3 +32,36 @@ console.log(matilda, jack);
 console.log(joey instanceof Person);
 
 ///////////////////////////////////////
+
+// Prototypes
+
+// Each and every function in JS automatically has a property called prototype
+// And that includes constructor functions
+
+console.log(Person.prototype);
+
+// We can create methods on the prototype property and then use them on the objects created by the constructor function
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+joey.calcAge();
+matilda.calcAge();
+
+console.log(joey.__proto__);
+console.log(joey.__proto__ === Person.prototype); // true
+
+console.log(Person.prototype.isPrototypeOf(joey)); // true
+console.log(Person.prototype.isPrototypeOf(Person)); // false
+
+// In fact, the .prototype property is a prototype of linked objects
+
+Person.prototype.species = "Homo Sapiens";
+console.log(joey.species, matilda.species);
+
+console.log(joey.hasOwnProperty("firstName")); // true
+
+// The species property is not inside the joey object, it's in the prototype property of Person and joey object has access to it
+console.log(joey.hasOwnProperty("species")); // false
+
+///////////////////////////////////////
