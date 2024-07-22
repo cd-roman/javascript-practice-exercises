@@ -65,3 +65,38 @@ console.log(joey.hasOwnProperty("firstName")); // true
 console.log(joey.hasOwnProperty("species")); // false
 
 ///////////////////////////////////////
+
+// Prototypal inheritance on built-in objects
+
+console.log(joey.__proto__);
+// Object.prototype (top of prototype chain)
+console.log(joey.__proto__.__proto__);
+
+console.log(joey.__proto__.__proto__.__proto__); // null
+
+console.dir(Person.prototype.constructor);
+
+const arr = [3, 6, 4, 7, 2, 9, 7, 7, 9];
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype); // true
+
+const arr2 = new Array(1, 2, 4);
+console.log(arr2);
+
+// We can create new methods for the built-in objects, for examples for arrays
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+console.log(arr.unique());
+
+// However, it's not the best practice, so it's better to avoid this technique
+
+// A good example to understand the prototype chain is to check the prototype of a h1 or a function using console.dir
+
+const h1 = document.querySelector("h1");
+console.dir(h1);
+
+console.dir((x) => x + 1);
+
+///////////////////////////////////////
