@@ -163,6 +163,7 @@ class PersonCl {
     this.birthYear = birthYear;
   }
 
+  // Instance methods
   // Methods will be added to .prototype property
   calcAge() {
     console.log(2037 - this.birthYear);
@@ -185,6 +186,11 @@ class PersonCl {
 
   get fullName() {
     return this._fullName;
+  }
+
+  // Static method
+  static hey() {
+    console.log("Hey there");
   }
 }
 
@@ -221,5 +227,29 @@ console.log(account.latest); // 300
 
 account.latest = 50;
 console.log(account.movements); // [200, 530, 120, 300, 50]
+
+///////////////////////////////////////
+
+// Static Methods
+
+// Static methods are attached to the constructor function and not to the prototype property
+
+console.log(Array.from(document.querySelectorAll("h1"))); // [h1]
+
+console.log(Number.parseFloat("30px")); // 30
+console.log(Number.parseInt("30px")); // 30
+
+// Implementing a static method for the constructor function
+
+Person.hey = function () {
+  console.log("Hey there");
+  console.log(this);
+};
+
+Person.hey();
+
+// Calling the static method from the class
+
+PersonCl.hey(); // Hey there
 
 ///////////////////////////////////////
