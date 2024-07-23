@@ -253,3 +253,27 @@ Person.hey();
 PersonCl.hey(); // Hey there
 
 ///////////////////////////////////////
+
+// Object.create
+
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const chandler = Object.create(PersonProto);
+chandler.init("Chandler", 1985);
+
+console.log(chandler);
+chandler.calcAge();
+
+console.log(chandler.__proto__);
+console.log(chandler.__proto__ === PersonProto); // true
+
+///////////////////////////////////////
