@@ -524,3 +524,68 @@ jay.introduce();
 jay.calcAge();
 
 ///////////////////////////////////////
+
+// Encapsulation: Private Class Fields and Methods
+
+class AccountCl {
+  // Public fields (available on the instances, not on the prototype)
+  locale = navigator.language;
+
+  // Private fields (available on the instances, not on the prototype)
+  #movements = [];
+  #pin;
+
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+
+    // Protected field
+    this.#pin = pin;
+
+    console.log(`Thanks for opening an account, ${owner}`);
+  }
+
+  // Public methods
+  getMovements() {
+    return this.#movements;
+  }
+
+  deposit(val) {
+    this.#movements.push(val);
+    return this;
+  }
+
+  withdraw(val) {
+    this.deposit(-val);
+    return this;
+  }
+
+  requestLoan(val) {
+    if (this._approveLoan(val)) {
+      this.deposit(val);
+      console.log("Loan approved");
+      return this;
+    }
+  }
+
+  // Protected method
+  _approveLoan(val) {
+    return true;
+  }
+
+  // Static method
+  static helper() {
+    console.log("Helper");
+  }
+}
+
+const acc1 = new AccountCl("Joey", "USD", 1111);
+console.log(acc1);
+
+acc1.deposit(250);
+acc1.withdraw(140);
+console.log(acc1);
+
+console.log(acc1.getMovements());
+
+///////////////////////////////////////
