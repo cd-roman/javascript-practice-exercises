@@ -2,6 +2,10 @@
 
 const btn = document.querySelector(".btn-country");
 const countriesContainer = document.querySelector(".countries");
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText("beforeend", msg);
+  countriesContainer.style.opacity = 1;
+};
 
 // API URL
 // https://countries-api-836d.onrender.com/countries/name/{countryName}
@@ -189,4 +193,45 @@ const getCountryDataChain = function (country) {
     });
 };
 
-getCountryDataChain("portugal");
+// getCountryDataChain("portugal");
+
+///////////////////////////////////////
+
+// Handling rejected promises (Handling errors)
+
+const getCountryDataError = function (country) {
+  // Country 1
+  fetch(`https://countries-api-836d.onrender.com/countries/name/${country}`)
+    .then((response) => {
+      // response.json() returns a promise
+      return response.json();
+    })
+    .then((data) => {
+      renderCountry(data[0]);
+      const neighbour = data[0].borders[0];
+
+      if (!neighbour) return;
+
+      // Country 2
+      return fetch(
+        `https://countries-api-836d.onrender.com/countries/alpha/${neighbour}`
+      );
+    })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      renderCountry(data, "neighbour");
+    })
+    .catch((err) => {
+      console.error(`${err} 💥💥💥`);
+      renderError(`Something went wrong! ${err.message}`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+};
+
+btn.addEventListener("click", function () {
+  getCountryDataError("portugal");
+});
