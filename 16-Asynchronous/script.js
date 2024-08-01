@@ -360,3 +360,54 @@ Promise.resolve("Resolved promise 2").then((res) => {
 });
 // 2 - synchronous code
 console.log("Test end");
+
+///////////////////////////////////////
+
+// Building a simple promise
+
+// Promise is an object representing the eventual completion or failure of an asynchronous operation
+// It takes an executor function with two arguments: resolve and reject
+const lotteryPromise = new Promise(function (resolve, reject) {
+  console.log("Lottery draw is happening 🔮");
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve("You WIN 💰");
+    } else {
+      reject(new Error("You lost your money 💩"));
+    }
+  }, 2000);
+});
+
+// Consuming promises
+lotteryPromise
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
+
+// Promisifying setTimeout
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+wait(2)
+  .then(() => {
+    console.log("I waited for 2 seconds");
+    return wait(1);
+  })
+  .then(() => {
+    console.log("I waited for 1 second");
+    return wait(3);
+  })
+  .then(() => {
+    console.log("I waited for 3 second");
+    return wait(2);
+  })
+  .then(() => {
+    console.log("I waited for 2 second");
+  });
+
+// Create a promise that immediately resolves
+Promise.resolve("abc").then((x) => console.log(x));
+// Create a promise that immediately rejects
+Promise.reject(new Error("Problem!")).catch((x) => console.error(x));
