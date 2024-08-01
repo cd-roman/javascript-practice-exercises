@@ -325,3 +325,38 @@ btn.addEventListener("click", function () {
   // whereAmI(19.037, 72.873);
   // whereAmI(-33.933, 18.474);
 });
+
+// Promise methods overview
+
+// Promise is an object representing the eventual completion or failure of an asynchronous operation
+// .then method is used to consume the promise and return a new promise
+
+// .then method is called when the promise is fulfilled
+// .catch method is called when the promise is rejected
+// .finally method is called when the promise is settled (fulfilled or rejected
+
+// Event loop in practice
+
+// Event loop is a mechanism that makes JavaScript non-blocking
+// Event loop is responsible for executing the code, collecting and processing events, and executing queued sub-tasks
+
+// Example of event loop
+// First, console.log("Test start") is executed
+// Then, console.log("Test end") is executed since it is synchronous
+// Promise.resolve will be executed before setTimeout since microtask queue has higher priority than callback queue
+// setTimeout is executed in the next event loop iteration after the microtask queue is empty
+
+// The order of execution is as follows:
+// 1 - synchronous code
+console.log("Test start");
+// 5 - callback queue
+setTimeout(() => console.log("0 sec timer"), 0);
+// 3 - microtask queue
+Promise.resolve("Resolved promise 1").then((res) => console.log(res));
+// 4 - microtask queue
+Promise.resolve("Resolved promise 2").then((res) => {
+  for (let i = 0; i < 100000000; i++) {}
+  console.log(res);
+});
+// 2 - synchronous code
+console.log("Test end");
