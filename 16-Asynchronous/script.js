@@ -280,8 +280,48 @@ const getCountryDataThrowError = function (country) {
     });
 };
 
-btn.addEventListener("click", function () {
-  getCountryDataThrowError("portugal");
-});
+// btn.addEventListener("click", function () {
+//   getCountryDataThrowError("portugal");
+// });
 
 // getCountryDataThrowError("notexistingcountry");
+
+///////////////////////////////////////
+
+// Coding Challenge #1
+
+const useJSON = function (url) {
+  return fetch(url).then((res) => {
+    if (!res.ok) {
+      throw new Error(`Problem with geocoding (${res.status})`);
+    }
+
+    return res.json();
+  });
+};
+
+const whereAmI = function (lat, lng) {
+  useJSON(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+    .then((data) => {
+      console.log(`You are in ${data.city}, ${data.country}`);
+      return useJSON(
+        `https://countries-api-836d.onrender.com/countries/name/${data.country}`
+      );
+    })
+    .then((data) => {
+      renderCountry(data[0]);
+    })
+    .catch((err) => {
+      console.error(`${err} 💥💥💥`);
+      renderError(`Something went wrong! ${err.message}`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+};
+
+btn.addEventListener("click", function () {
+  whereAmI(52.508, 13.381);
+  // whereAmI(19.037, 72.873);
+  // whereAmI(-33.933, 18.474);
+});
