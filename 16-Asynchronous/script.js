@@ -575,3 +575,57 @@ const get3Countries = async function (c1, c2, c3) {
 };
 
 get3Countries("portugal", "italy", "france");
+
+///////////////////////////////////////
+
+// Other promise combinators: race, allSettled, any
+
+// Promise.race
+// Returns an array of promises and the first settled promise (fulfilled or rejected) is returned
+
+(async function () {
+  const res = await Promise.race([
+    getJSON(`https://countries-api-836d.onrender.com/countries/name/italy`),
+    getJSON(`https://countries-api-836d.onrender.com/countries/name/usa`),
+    getJSON(`https://countries-api-836d.onrender.com/countries/name/germany`),
+  ]);
+  console.log(res[0]);
+})();
+
+// Timeout promise that automatically rejects after a certain time
+const timeout = function (sec) {
+  return new Promise(function (_, reject) {
+    setTimeout(function () {
+      reject(new Error("Request took too long"));
+    }, sec * 1000);
+  });
+};
+
+Promise.race([
+  getJSON(`https://countries-api-836d.onrender.com/countries/name/spain`),
+  timeout(0.2),
+])
+  .then((res) => console.log(res[0]))
+  .catch((err) => console.error(err));
+
+// Promise.allSettled
+// Takes an array of promises and returns an array of all settled promises (fulfilled or rejected)
+
+Promise.allSettled([
+  Promise.resolve("Success"),
+  Promise.reject("Error"),
+  Promise.resolve("Another success"),
+])
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
+
+// Promise.any
+// Takes an array of promises and returns the first fulfilled promise, ignoring rejected promises
+
+Promise.any([
+  Promise.resolve("Success"),
+  Promise.reject("Error"),
+  Promise.resolve("Another success"),
+])
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
