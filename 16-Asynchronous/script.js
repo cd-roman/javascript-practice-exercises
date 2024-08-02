@@ -367,21 +367,23 @@ console.log("Test end");
 
 // Promise is an object representing the eventual completion or failure of an asynchronous operation
 // It takes an executor function with two arguments: resolve and reject
-const lotteryPromise = new Promise(function (resolve, reject) {
-  console.log("Lottery draw is happening 🔮");
-  setTimeout(function () {
-    if (Math.random() >= 0.5) {
-      resolve("You WIN 💰");
-    } else {
-      reject(new Error("You lost your money 💩"));
-    }
-  }, 2000);
-});
+
+// const lotteryPromise = new Promise(function (resolve, reject) {
+//   console.log("Lottery draw is happening 🔮");
+//   setTimeout(function () {
+//     if (Math.random() >= 0.5) {
+//       resolve("You WIN 💰");
+//     } else {
+//       reject(new Error("You lost"));
+//     }
+//   }, 2000);
+// });
 
 // Consuming promises
-lotteryPromise
-  .then((res) => console.log(res))
-  .catch((err) => console.error(err));
+
+// lotteryPromise
+//   .then((res) => console.log(res))
+//   .catch((err) => console.error(err));
 
 // Promisifying setTimeout
 const wait = function (seconds) {
@@ -515,11 +517,37 @@ const whereAmIAsync = async function () {
     const data = await res.json();
     console.log(data);
     renderCountry(data[0]);
+
+    return `You are in ${dataGeo.city}, ${dataGeo.country}`;
   } catch (err) {
     console.error(`${err} 💥💥💥`);
     renderError(`💥💥💥 ${err.message}`);
+
+    // Reject promise returned from async function to handle error outside of the function
+    throw err;
   }
 };
 
-whereAmIAsync();
-// console.log("First");
+// Returning values from async functions
+
+console.log("1: Will get location");
+
+// whereAmIAsync()
+//   .then((city) => console.log(`2: ${city}`))
+//   .catch((err) => {
+//     console.error(`2: ${err.message}`);
+//   })
+//   .finally(() => {
+//     console.log("3: Finished getting location");
+//   });
+
+// IIFE to immediately invoke the async function
+(async function () {
+  try {
+    const city = await whereAmIAsync();
+    console.log(`2: ${city}`);
+  } catch (err) {
+    console.error(`2: ${err.message}`);
+  }
+  console.log("3: Finished getting location");
+})();
