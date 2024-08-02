@@ -320,11 +320,11 @@ const whereAmI = function (lat, lng) {
     });
 };
 
-btn.addEventListener("click", function () {
-  whereAmI(52.508, 13.381);
-  // whereAmI(19.037, 72.873);
-  // whereAmI(-33.933, 18.474);
-});
+// btn.addEventListener("click", function () {
+//   whereAmI(52.508, 13.381);
+//   // whereAmI(19.037, 72.873);
+//   // whereAmI(-33.933, 18.474);
+// });
 
 // Promise methods overview
 
@@ -411,3 +411,62 @@ wait(2)
 Promise.resolve("abc").then((x) => console.log(x));
 // Create a promise that immediately rejects
 Promise.reject(new Error("Problem!")).catch((x) => console.error(x));
+
+///////////////////////////////////////
+
+// Promisifying the Geolocation API
+
+// Getting the current position using the callback-based API
+// navigator.geolocation.getCurrentPosition(
+//   (position) => console.log(position),
+//   (err) => console.error(err)
+// );
+
+// Promisifying the Geolocation API
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+// getPosition().then((pos) => console.log(pos));
+
+const whereAmIPromise = function () {
+  getPosition()
+    .then((pos) => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Problem with geocoding (${response.status})`);
+      }
+
+      return response.json();
+    })
+    .then((data) => {
+      console.log(`You are in ${data.city}, ${data.country}`);
+      return fetch(
+        `https://countries-api-836d.onrender.com/countries/name/${data.country}`
+      );
+    })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`Country not found (${res.status})`);
+      }
+
+      return res.json();
+    })
+    .then((data) => {
+      renderCountry(data[0]);
+    })
+    .catch((err) => {
+      console.error(`${err} 💥💥💥`);
+      renderError(`Something went wrong! ${err.message}`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+};
+
+btn.addEventListener("click", whereAmIPromise);
