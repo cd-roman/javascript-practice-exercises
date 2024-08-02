@@ -473,26 +473,52 @@ btn.addEventListener("click", whereAmIPromise);
 
 ///////////////////////////////////////
 
+// Error handling with try...catch statement
+
+// A schematic example of try...catch statement
+
+// try {
+//   let y = 1;
+//   const x = 2;
+//   x = 3;
+// } catch (err) {
+//   alert(err.message);
+// }
+
+///////////////////////////////////////
+
 // Consuming promises with async/await
+// And error handling with try...catch statement
 
 const whereAmIAsync = async function () {
-  // Geolocation using getPosition function above
-  const pos = await getPosition();
-  const { latitude: lat, longitude: lng } = pos.coords;
+  try {
+    // Geolocation using getPosition function above
+    const pos = await getPosition();
+    const { latitude: lat, longitude: lng } = pos.coords;
 
-  // Reverse geocoding
-  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    // Reverse geocoding
+    const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    if (!resGeo.ok) {
+      throw new Error("Problem getting location data");
+    }
 
-  const dataGeo = await resGeo.json();
+    const dataGeo = await resGeo.json();
 
-  // Country data
-  const res = await fetch(
-    `https://countries-api-836d.onrender.com/countries/name/${dataGeo.country}`
-  );
+    // Country data
+    const res = await fetch(
+      `https://countries-api-836d.onrender.com/countries/name/${dataGeo.country}`
+    );
+    if (!res.ok) {
+      throw new Error("Problem getting country data");
+    }
 
-  const data = await res.json();
-  console.log(data);
-  renderCountry(data[0]);
+    const data = await res.json();
+    console.log(data);
+    renderCountry(data[0]);
+  } catch (err) {
+    console.error(`${err} 💥💥💥`);
+    renderError(`💥💥💥 ${err.message}`);
+  }
 };
 
 whereAmIAsync();
