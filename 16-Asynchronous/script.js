@@ -530,7 +530,7 @@ const whereAmIAsync = async function () {
 
 // Returning values from async functions
 
-console.log("1: Will get location");
+// console.log("1: Will get location");
 
 // whereAmIAsync()
 //   .then((city) => console.log(`2: ${city}`))
@@ -542,12 +542,36 @@ console.log("1: Will get location");
 //   });
 
 // IIFE to immediately invoke the async function
-(async function () {
+
+// (async function () {
+//   try {
+//     const city = await whereAmIAsync();
+//     console.log(`2: ${city}`);
+//   } catch (err) {
+//     console.error(`2: ${err.message}`);
+//   }
+//   console.log("3: Finished getting location");
+// })();
+
+///////////////////////////////////////
+
+// Running promises in parallel
+
+const get3Countries = async function (c1, c2, c3) {
   try {
-    const city = await whereAmIAsync();
-    console.log(`2: ${city}`);
+    // Parallel promise
+    // Promise.all takes an array of promises and returns a new promise
+    // If one of the promises is rejected, the whole promise is rejected
+    const data = await Promise.all([
+      getJSON(`https://countries-api-836d.onrender.com/countries/name/${c1}`),
+      getJSON(`https://countries-api-836d.onrender.com/countries/name/${c2}`),
+      getJSON(`https://countries-api-836d.onrender.com/countries/name/${c3}`),
+    ]);
+
+    console.log(data.map((d) => d[0].capital));
   } catch (err) {
-    console.error(`2: ${err.message}`);
+    console.error(err);
   }
-  console.log("3: Finished getting location");
-})();
+};
+
+get3Countries("portugal", "italy", "france");
