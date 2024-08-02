@@ -390,22 +390,22 @@ const wait = function (seconds) {
   });
 };
 
-wait(2)
-  .then(() => {
-    console.log("I waited for 2 seconds");
-    return wait(1);
-  })
-  .then(() => {
-    console.log("I waited for 1 second");
-    return wait(3);
-  })
-  .then(() => {
-    console.log("I waited for 3 second");
-    return wait(2);
-  })
-  .then(() => {
-    console.log("I waited for 2 second");
-  });
+// wait(2)
+//   .then(() => {
+//     console.log("I waited for 2 seconds");
+//     return wait(1);
+//   })
+//   .then(() => {
+//     console.log("I waited for 1 second");
+//     return wait(3);
+//   })
+//   .then(() => {
+//     console.log("I waited for 3 second");
+//     return wait(2);
+//   })
+//   .then(() => {
+//     console.log("I waited for 2 second");
+//   });
 
 // Create a promise that immediately resolves
 Promise.resolve("abc").then((x) => console.log(x));
@@ -470,3 +470,30 @@ const whereAmIPromise = function () {
 };
 
 btn.addEventListener("click", whereAmIPromise);
+
+///////////////////////////////////////
+
+// Consuming promises with async/await
+
+const whereAmIAsync = async function () {
+  // Geolocation using getPosition function above
+  const pos = await getPosition();
+  const { latitude: lat, longitude: lng } = pos.coords;
+
+  // Reverse geocoding
+  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+
+  const dataGeo = await resGeo.json();
+
+  // Country data
+  const res = await fetch(
+    `https://countries-api-836d.onrender.com/countries/name/${dataGeo.country}`
+  );
+
+  const data = await res.json();
+  console.log(data);
+  renderCountry(data[0]);
+};
+
+whereAmIAsync();
+// console.log("First");
