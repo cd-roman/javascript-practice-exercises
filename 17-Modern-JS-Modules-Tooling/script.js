@@ -19,3 +19,36 @@ console.log("Importing module");
 
 addToCart("bread", 5);
 console.log(price, quantity);
+
+///////////////////////////////////////
+
+// Top-level await (ES2022)
+
+// console.log("Start fetching...");
+
+// Top-level await is a feature that allows us to use await outside of an async function
+// const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+// const data = await res.json();
+// console.log(data);
+
+// Top-level await blocks the code execution until the promise is resolved
+// console.log("Some text");
+
+//Real-world example
+const getLastPost = async function () {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const data = await res.json();
+
+  return {
+    title: data[data.length - 1].title,
+    body: data[data.length - 1].body,
+  };
+};
+
+// Not very clean
+// const lastPost = getLastPost();
+// lastPost.then((post) => console.log(post));
+
+// Better way
+const lastPost2 = await getLastPost();
+console.log(lastPost2);
