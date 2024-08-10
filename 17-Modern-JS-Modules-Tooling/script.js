@@ -86,3 +86,19 @@ ShoppingCart.addToCart("apple", 4);
 ShoppingCart.addToCart("pizza", 2);
 console.log(ShoppingCart);
 console.log(ShoppingCart.shippingCost); // undefined
+
+///////////////////////////////////////
+
+// CommonJS Modules
+
+// CommonJS modules are used in Node.js
+// They are not supported in the browser
+
+// Export
+// export.addToCart = function (product, quantity) {
+//   cart.push({ product, quantity });
+//   console.log(`${quantity} ${product} added to cart`);
+// };
+
+// Import
+// const { addToCart } = require("./shoppingCart.js");
