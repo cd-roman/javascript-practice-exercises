@@ -102,3 +102,37 @@ console.log(ShoppingCart.shippingCost); // undefined
 
 // Import
 // const { addToCart } = require("./shoppingCart.js");
+
+///////////////////////////////////////
+
+// Hot Module Replacement (HMR)
+
+// HMR is a feature that allows us to update modules without refreshing the page
+// It's a feature of Webpack or other bundlers like Parcel
+// It's not a feature of JavaScript
+
+// The syntax is different for each bundler
+
+// Parcel example - No configuration needed
+if (module.hot) {
+  module.hot.accept();
+}
+
+///////////////////////////////////////
+
+// Babel, Polyfilling amd Transpilation
+
+// Transpilation is about converting syntax.
+// Polyfilling is about adding missing features
+
+// Example Workflow with Babel
+// Transpilation: Babel is configured to transpile modern JavaScript syntax to ES5.
+// Polyfilling: Babel, together with core-js, adds polyfills for any new features that are used in your code
+// but are not supported by the target environment.
+
+// We can import core-js at the top of the file to polyfill everything
+// Or we can import specific polyfills for specific features
+// For example, we can import the promise polyfill: import "core-js/stable/promise";
+
+// Polyfilling async functions
+// import "regenerator-runtime/runtime";
